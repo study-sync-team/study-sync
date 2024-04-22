@@ -7,7 +7,7 @@ export default function OnboardingOneSection() {
             <div className="container-fluid">
                 <div className="row">
                     {/* First column takes up half of the screen */}
-                    <div className="col-md-6 p-0">
+                    <div className="col-md-4 p-0">
                         <img src="/onboarding1.png" className="img-fluid h-51 w-100" alt="Half screen image" />
                     </div>
                     {/* Second column takes up the other half of the screen */}
@@ -17,7 +17,7 @@ export default function OnboardingOneSection() {
                                 <span className="me-2">Track</span>
                                 <span style={{ color: "#E84D88" }}>Academic Progress</span>
                             </h4>
-                            <p>
+                            <p className="px-4" style={{ fontFamily: "Montserrat-SemiBold" }}>
                                 Monitor your academic journey with ease
                             </p>
                         </div>
