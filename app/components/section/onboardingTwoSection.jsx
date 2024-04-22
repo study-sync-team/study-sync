@@ -19,7 +19,7 @@ export default function OnboardingTwoSection() {
                                 <span style={{ color: "#E84D88" }}>A Study Plan</span>
                             </h4>
                             <p className="px-4" style={{ fontFamily: "Montserrat-SemiBold" }}>
-                                Build your study RoadmapIn Real-Time
+                                Build your study Roadmap In Real-Time
                             </p>
 
                             <img src="frame1.png" />
