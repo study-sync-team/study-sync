@@ -1,7 +1,7 @@
 import Link from "next/link"
-import SignupForm from "../forms/signupForm"
+import SetupForm from "../forms/setupForm"
 
-export default function SignUpSection() {
+export default function SetupSection() {
 
     return (
 
@@ -17,18 +17,18 @@ export default function SignUpSection() {
                 <div className="container">
                     <div className="d-flex ps-3 mt-4">
                         <span className="me-3">
-                            <Link href="/onboard2" className="bi bi-chevron-left" style={{ fontSize: "20px", color: "#D9455F" }}></Link>
+                            <Link href="/signup" className="bi bi-chevron-left" style={{ fontSize: "20px", color: "#D9455F" }}></Link>
                         </span>
                         <span style={{ fontSize: "20px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Create Account</span>
                     </div>
                     <div className="px-4">
                         <div class="progress mt-3" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
-                            <div class="progress-bar" style={{ "width": "50%", backgroundColor: "#D9455F" }}></div>
+                            <div class="progress-bar" style={{ "width": "100%", backgroundColor: "#D9455F" }}></div>
                         </div>
                     </div>
 
                     <div className="mt-4 px-2">
-                    <SignupForm />
+                        <SetupForm />
                     </div>
                 </div>
             </main>
