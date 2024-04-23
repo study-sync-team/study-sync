@@ -25,8 +25,7 @@ export default function Home() {
         <main className="mt-5 pt-5" style={{ height: "100%" }}>
           <div className="mt-5 pt-5" style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <h1 className="mt-5 pt-4">
-              <img src="/logo.png" alt="Logo" /> {/* Make sure to add alt text */}
-              {/* You can also add a loading indicator here */}
+              <img src="/logo.png" alt="Logo" />
             </h1>
           </div>
         </main>

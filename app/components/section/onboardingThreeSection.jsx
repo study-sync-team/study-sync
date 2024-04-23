@@ -30,7 +30,7 @@ export default function OnboardingThreeSection() {
                                     Skip
                                 </button>
 
-                                <Link href="/" className="btn border-0 text-white px-5" style={{ fontFamily: "Montserrat-Bold", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                <Link href="/signup" className="btn border-0 text-white px-5" style={{ fontFamily: "Montserrat-Bold", background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                     Next
                                 </Link>
 
