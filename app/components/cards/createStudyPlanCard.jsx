@@ -4,7 +4,7 @@ export default function CreateStudyPlanCard() {
 
         <>
 
-            <div className="card m-0" style={{ height: "84px", backgroundColor: "transparent", borderRadius: "10px" }}>
+            <div className="card m-0" style={{ height: "84px", backgroundColor: "transparent", borderRadius: "10px", border: "2px solid #E0D9DE" }}>
                 <div className="card-body mt-2 mb-2">
                     <div className="d-flex" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "14PX", fontWeight: "550" }}>
                         <span className="me-2">
