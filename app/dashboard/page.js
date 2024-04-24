@@ -1,4 +1,4 @@
-import Header from "../components/header/header"
+import { DashboardHeader } from "../components/header/dashboard"
 import Dashboard from "../components/section/dashboardSection"
 
 export default function Page(){
@@ -7,7 +7,7 @@ export default function Page(){
 
         <>
 
-            <Header />
+            <DashboardHeader title="Dashboard" icon="bi-list"/>
             <Dashboard />
 
         </>

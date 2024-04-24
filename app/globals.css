@@ -18,3 +18,20 @@ select option:selected{
   color: #6c757d !important; /* Set placeholder color */
   font-family: "Fredoka", sans-serif !important;
 }
+
+#dashnav{
+  border: 1px solid #E0D9DE
+}
+
+#dashnav:hover{
+  border: 1px solid #E84D88
+}
+
+#dashnavv{
+  border: 1px solid #E0D9DE
+}
+
+#dashnavv:hover{
+  border: 1px solid #E84D88
+
+}
