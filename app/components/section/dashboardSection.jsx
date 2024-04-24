@@ -90,6 +90,26 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <hr />
+
+                        <p className="d-flex mt-4" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
+                            <span><i className="bi bi-award me-2" /></span>
+                            <span>Acheivements</span>
+                        </p>
+
+                        <div className="mt-2 mb-2">
+                            <div className="card border-0 bg-transparent p-0" >
+                                <div className="card-body">
+                                    <div className="d-flex justify-content-center align-content-center">
+                                        <img src="medal.png" />
+                                    </div>
+                                    <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
+                                        Congrats, Isila !
+                                    </span>
+                                    <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333"  }}>You just completed your weekly module quiz</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
