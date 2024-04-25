@@ -1,21 +1,23 @@
 "use client"
+import { FaRegTrashCan } from "react-icons/fa6";
+import Link from "next/link";
 
 import { useState } from 'react';
 
 export default function StudyPlanForm() {
 
-    const [imagePreviews, setImagePreviews] = useState([]);
+    const [images, setImages] = useState([]);
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
 
         Promise.all(files.map(fileToDataURL))
             .then((previews) => {
-                setImagePreviews(previews);
+                setImages(previews);
             })
             .catch((error) => {
                 console.error('Error reading files:', error);
-                setImagePreviews([]);
+                setImages([]);
             });
     };
 
@@ -33,7 +35,13 @@ export default function StudyPlanForm() {
 
             reader.readAsDataURL(file);
         });
-    }
+    };
+
+    const handleDelete = (index) => {
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
+    };
 
 
     return (
@@ -60,12 +68,24 @@ export default function StudyPlanForm() {
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Upload Your Notes</label>
                     <input class="form-control" type="file" id="formFileMultiple" multiple style={{ height: "44px", backgroundColor: "#F7F2F6", borderRadius: "10px" }} accept="image/*" onChange={handleImageChange} />
                 </div>
-                <div>
-                    {imagePreviews.map((preview, index) => (
-                        <img key={index} src={preview} style={{ width: '200px', height: 'auto', margin: '5px' }} />
-                    ))}
-                </div>
             </form>
+            <div>
+                {images.map((preview, index) => (
+                    <div key={index} className="position-relative d-inline-block me-2">
+                        <img className="img-thumbnail rounded mb-3" src={preview} style={{ width: '100px', height: '100px', objectFit: 'contain' }} alt={`Thumbnail ${index}`} />
+                        <button className="btn btn-danger btn-sm position-absolute top-0 end-0 bg-light text-danger" onClick={() => handleDelete(index)}>
+                            <FaRegTrashCan />
+                        </button>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-5 mb-3 d-grid">
+                <Link href="/setup" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                    Upload Note
+                </Link>
+            </div>
+
 
         </>
 
