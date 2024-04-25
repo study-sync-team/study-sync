@@ -17,7 +17,7 @@ export default function SetupSection() {
                 <div className="container">
                     <div className="d-flex ps-3 mt-4">
                         <span className="me-3">
-                            <Link href="/signup" className="bi bi-chevron-left" style={{ fontSize: "20px", color: "#D9455F" }}></Link>
+                            <Link href="/signup" className="bi bi-chevron-left" style={{ fontSize: "20px", color: "#D9455F", "-webkit-text-stroke": "1.3px", textStroke: "5px" }}></Link>
                         </span>
                         <span style={{ fontSize: "20px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Create Account</span>
                     </div>

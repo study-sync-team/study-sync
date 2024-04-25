@@ -1,4 +1,5 @@
 import Header from "@/app/components/header/header";
+import CreateStudyPlanSection from "@/app/components/section/createStudyPlanSection";
 
 export default function Page(){
 
@@ -6,7 +7,9 @@ export default function Page(){
 
         <>
 
-            <Header title="Study Plan" icon="bi-chevron-left"/>
+            <Header title="Study Plan" icon="bi-chevron-left" route="/dashboard"/>
+
+            <CreateStudyPlanSection />
 
         </>
 

@@ -7,6 +7,10 @@ body{
   height: 100%
 }
 
+.form-control{
+  border: 1px solid #E0D9DE !important
+}
+
 .form-control::placeholder {
   font-size: 13px; /* Set placeholder font size */
   color: #6c757d; /* Set placeholder color */
