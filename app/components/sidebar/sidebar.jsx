@@ -1,24 +1,25 @@
 "use client"
 import Link from "next/link"
-import { useRef } from 'react';
+import { useRouter } from 'next/navigation'
 
 
 export default function Sidebar() {
 
-    const offcanvasRef = useRef(null);
+    const router = useRouter()
 
-    const handleLinkClick = () => {
-        if (offcanvasRef.current) {
-            const offcanvas = new bootstrap.Offcanvas(offcanvasRef.current);
-            offcanvas.hide();
-        }
-    };
+
+    function redirectToStudyPlan() {
+        setTimeout(() => {
+            router.push('/study-plan')
+        }, 300);
+
+    }
 
     return (
 
         <>
 
-            <div class="offcanvas offcanvas-start rounded" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style={{ width: "250px" }} ref={offcanvasRef}>
+            <div class="offcanvas offcanvas-start rounded" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style={{ width: "250px" }}>
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel">
                         <img src="/logo.png" alt="Logo" width={150} />
@@ -30,10 +31,10 @@ export default function Sidebar() {
                 <div class="offcanvas-body">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2">
-                            <Link class="nav-link" href="" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }} onClick={handleLinkClick}>
+                            <a class="nav-link" onClick={redirectToStudyPlan} data-bs-dismiss="offcanvas" aria-label="Close" href="/study-plan/create" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-ui-checks-grid me-3" style={{ color: "#E84D88" }} />
                                 <span>Study Plan</span>
-                            </Link>
+                            </a>
                         </li>
                         <li class="nav-item mb-2">
                             <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
