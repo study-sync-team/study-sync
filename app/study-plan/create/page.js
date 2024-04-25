@@ -7,7 +7,7 @@ export default function Page(){
 
         <>
 
-            <Header title="Study Plan" icon="bi-chevron-left" route="/dashboard"/>
+            <Header title="Create Study Plan" icon="bi-chevron-left" route="/dashboard"/>
 
             <CreateStudyPlanSection />
 

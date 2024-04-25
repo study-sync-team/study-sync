@@ -45,9 +45,7 @@ export default function Dashboard() {
                         <div className="col p-1" style={{ maxHeight: "100%" }}>
                             <AnalyticsCard />
                         </div>
-                        <div className="col p-1">
-                            <TodoCard />
-                        </div>
+                        
                         <div className="col p-1">
                             <BlogPost />
                         </div>
