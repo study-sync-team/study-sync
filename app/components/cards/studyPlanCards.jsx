@@ -1,10 +1,12 @@
+import Link from "next/link"
+
 export default function StudyPlanCards() {
 
     return (
 
         <>
 
-            <div className="card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+            <Link href="/study-plan/modules" className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
@@ -45,7 +47,7 @@ export default function StudyPlanCards() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
 
         </>
 
