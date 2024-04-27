@@ -7,7 +7,7 @@ export default function Notes() {
 
         <>
 
-            <Header title="Modules" icon="bi-chevron-left" route="/dashboard" />
+            <Header title="Note" icon="bi-chevron-left" route="/dashboard" />
 
             <NotesSection />
         </>
