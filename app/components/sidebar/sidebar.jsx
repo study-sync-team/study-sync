@@ -15,6 +15,12 @@ export default function Sidebar() {
 
     }
 
+    function redirectToProfile(){
+        setTimeout(() => {
+            router.push('/profile')
+        }, 300);
+    }
+
     return (
 
         <>
@@ -31,7 +37,7 @@ export default function Sidebar() {
                 <div class="offcanvas-body">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2">
-                            <a class="nav-link" onClick={redirectToStudyPlan} data-bs-dismiss="offcanvas" aria-label="Close" href="/study-plan/create" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
+                            <a class="nav-link" onClick={redirectToStudyPlan} data-bs-dismiss="offcanvas" aria-label="Close" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-ui-checks-grid me-3" style={{ color: "#E84D88" }} />
                                 <span>Study Plan</span>
                             </a>
@@ -61,7 +67,7 @@ export default function Sidebar() {
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
+                            <a class="nav-link" onClick={redirectToProfile} data-bs-dismiss="offcanvas" aria-label="Close" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-person me-3" style={{ color: "#E84D88" }} />
                                 <span>Profile</span>
                             </a>

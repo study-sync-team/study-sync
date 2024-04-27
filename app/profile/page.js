@@ -9,8 +9,8 @@ export default function Profile() {
   className="container-fluid"
   style={{
     backgroundColor: "#EBDEEA",
-    borderBottomLeftRadius: "30px",
-    borderBottomRightRadius: "30px",
+    borderBottomLeftRadius: "15px",
+    borderBottomRightRadius: "15px",
     height: "230px", 
   }}
 >
