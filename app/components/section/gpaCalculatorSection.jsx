@@ -27,7 +27,7 @@ export default function GpaCalculatorSection() {
 
                     <GpaTable />
 
-                    <div className="text-center" style={{ fontFamily: "Fredoka, sans-serif",}}>
+                    <div className="text-center" style={{ fontFamily: "Fredoka, sans-serif"}}>
                         <p>Your GPA for 200 level 1st semester is</p>
                     </div>
 
