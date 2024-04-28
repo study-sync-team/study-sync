@@ -3,7 +3,6 @@ import CalculateGpaCard from "../cards/calculateGPAcard"
 import CreatAiQuizCard from "../cards/createAiquizCard"
 import CalculateCGPACard from "../cards/calculateCGPACard"
 import AnalyticsCard from "../cards/analyticsCard"
-import TodoCard from "../cards/todoCard"
 import BlogPost from "../cards/blogPostCard"
 
 export default function Dashboard() {
