@@ -1,4 +1,4 @@
-import GpaTable from "../table/table"
+import GpaTable from "../table/gpaTable"
 import SaveGpaModal from "../modal/saveGpaModal"
 
 export default function GpaCalculatorSection() {
