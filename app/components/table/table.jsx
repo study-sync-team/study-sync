@@ -16,38 +16,78 @@ export default function GpaTable() {
                 </thead>
                 <tbody>
                     <tr>
-                        <th>ANA 203</th>
-                        <td>10</td>
-                        <td>10</td>
-                        <td>10</td>
+                        <td>
+                            <span style={{ fontFamily: "Fredoka, sans-serif" }}>ANA 203</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-2" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>A</span>
+                        </td>
                         <td><i className="bi bi-x-circle ms-3"></i></td>
                     </tr>
                     <tr>
-                        <th>ANA204</th>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>6</td>
+                        <td>
+                            <span style={{ fontFamily: "Fredoka, sans-serif" }}>ANA 203</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-2" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>A</span>
+                        </td>
                         <td><i className="bi bi-x-circle ms-3"></i></td>
                     </tr>
                     <tr>
-                        <th>ANA204</th>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>6</td>
+                        <td>
+                            <span style={{ fontFamily: "Fredoka, sans-serif" }}>ANA 203</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-2" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>A</span>
+                        </td>
                         <td><i className="bi bi-x-circle ms-3"></i></td>
                     </tr>
                     <tr>
-                        <th>ANA204</th>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>6</td>
+                        <td>
+                            <span style={{ fontFamily: "Fredoka, sans-serif" }}>ANA 203</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-2" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>A</span>
+                        </td>
                         <td><i className="bi bi-x-circle ms-3"></i></td>
                     </tr>
                     <tr>
-                        <th>ANA204</th>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>6</td>
+                        <td>
+                            <span style={{ fontFamily: "Fredoka, sans-serif" }}>ANA 203</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-2" style={{ fontFamily: "Fredoka, sans-serif" }}>10</span>
+                        </td>
+                        <td>
+                            <span className="ms-3" style={{ fontFamily: "Fredoka, sans-serif" }}>A</span>
+                        </td>
                         <td><i className="bi bi-x-circle ms-3"></i></td>
                     </tr>
                 </tbody>

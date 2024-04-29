@@ -39,3 +39,7 @@ select option:selected{
   border: 1px solid #E84D88
 
 }
+
+#saveGpaModal{
+  border-radius: 20px;
+}
