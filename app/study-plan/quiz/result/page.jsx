@@ -7,12 +7,12 @@ export default function Results(){
 
         <>
 
-            return (
+           
 
                 <Header title="Result" icon="bi-chevron-left" route="/dashboard" />
 
                 <ResultSection />
-            )
+           
 
         </>
 

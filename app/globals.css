@@ -39,3 +39,11 @@ select option:selected{
   border: 1px solid #E84D88
 
 }
+
+#saveGpaModal{
+  width:90%;
+  position: fixed; /* Ensures it stays in the viewport */
+  top: 50%; /* Aligns the top of the modal to the middle */
+  left: 50%; /* Aligns the left of the modal to the middle */
+  transform: translate(-50%, -50%); 
+}
