@@ -49,7 +49,7 @@ export default function Sidebar() {
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
+                            <a class="nav-link" href="/study-plan/quiz" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-cpu me-3" style={{ color: "#E84D88" }} />
                                 <span>Quiz</span>
                             </a>

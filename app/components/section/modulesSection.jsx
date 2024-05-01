@@ -1,3 +1,4 @@
+import ModulesPlanCards from "../cards/modulesPlanCards"
 export default function ModulesSection() {
 
     return (
@@ -11,7 +12,27 @@ export default function ModulesSection() {
                     {/*}
                         Import Your component here idiot boy!!! 
                     {*/}
-                    <p style={{ fontFamily: "Fredoka, sans-serif" }}>Modules component goes here</p>
+                    <div className="row row-cols-1 mt-4">
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                        <div className="col mb-3">
+                            <ModulesPlanCards />
+                        </div>
+                    </div>
+                    {/* <p style={{ fontFamily: "Fredoka, sans-serif" }}>Modules component goes here</p> */}
                     </div>
                 </div>
 
