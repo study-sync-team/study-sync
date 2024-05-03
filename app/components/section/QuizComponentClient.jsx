@@ -67,10 +67,10 @@ const QuizComponentClient = ({ quiz }) => {
 
   return (
     <section className="container w-100">
-      <div className='my-4' style={{display: 'flex', justifyContent: 'end', alignItems: 'end', width: '100%'}}>
+      {/* <div className='my-4' style={{display: 'flex', justifyContent: 'end', alignItems: 'end', width: '100%'}}>
 
         <button className="calculatorButton text-white px-3 btn"  onClick={handleOpenCalculator} style={{background: 'linear-gradient(to right, #CB5284, #754968)'}}>Calculator</button>
-      </div>
+      </div> */}
       <div className="questionBox w-100" id="app">
         <Transition
           duration={{ enter: 500, leave: 300 }}
@@ -181,6 +181,7 @@ const QuizComponentClient = ({ quiz }) => {
           </div>
         )}
 
+      </div>
         <Modal
           isOpen={showCalculatorModal}
           onRequestClose={handleCloseCalculator}
@@ -189,7 +190,7 @@ const QuizComponentClient = ({ quiz }) => {
             content: {
               padding : '0px',
               margin: '0px',
-              height: '100%',
+              height: '57%',
               
               
               borderRadius: '15px'
@@ -199,14 +200,13 @@ const QuizComponentClient = ({ quiz }) => {
           <div className="calculatorModalContent p-0 m-0">
            
             {/* Add your calculator component here */}
-            <QuizCalculator />
+            <QuizCalculator className='p-0 m-0'/>
             {/* <div className='w-100 text-center mt-2'>
 
               <button className='btn px-5 text-white' onClick={handleCloseCalculator}  style={{background: 'linear-gradient(to right, #CB5284, #754968)'}}>Close</button>
             </div> */}
           </div>
         </Modal>
-      </div>
 
     </section>
   );
