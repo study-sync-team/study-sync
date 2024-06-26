@@ -21,6 +21,12 @@ export default function Sidebar() {
         }, 300);
     }
 
+    function redirectToCgpa(){
+        setTimeout(() => {
+            router.push('/gpa')
+        }, 300);
+    }
+
     return (
 
         <>
@@ -43,7 +49,7 @@ export default function Sidebar() {
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
+                            <a class="nav-link" onClick={redirectToCgpa} data-bs-dismiss="offcanvas" aria-label="Close" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-calculator me-3" style={{ color: "#E84D88" }} />
                                 <span>CGPA</span>
                             </a>
@@ -60,12 +66,14 @@ export default function Sidebar() {
                                 <span>Grades</span>
                             </a>
                         </li>
+                        {/*}
                         <li class="nav-item mb-2">
                             <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-gear me-3" style={{ color: "#E84D88" }} />
                                 <span>Settings</span>
                             </a>
                         </li>
+                        {*/}
                         <li class="nav-item mb-2">
                             <a class="nav-link" onClick={redirectToProfile} data-bs-dismiss="offcanvas" aria-label="Close" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-person me-3" style={{ color: "#E84D88" }} />

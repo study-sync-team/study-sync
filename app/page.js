@@ -22,19 +22,24 @@ export default function Home() {
     <>
 
       {loading ? (
-        <main className="mt-5 pt-5" style={{ height: "100%" }}>
-          <div className="mt-5 pt-5" style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <h1 className="mt-5 pt-4">
+        <main className="" style={{ height: "100vh", alignContent: "center" }}>
+          <div className="d-flex align-justify-center justify-content-center">
+            <h1 className="">
               <img src="/logo.png" alt="Logo" />
             </h1>
           </div>
         </main>
       ) : (
-        <div>
+        <>
+
           <OnboardingOneSection />
-        </div>
+        </>
 
       )}
+
+      {/*}
+          
+          {*/}
 
 
     </>

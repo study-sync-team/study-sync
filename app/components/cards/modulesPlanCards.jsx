@@ -6,7 +6,14 @@ export default function ModulesPlanCards() {
 
         <>
 
-            <Link href="/study-plan/modules" className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+            <div class="position-relative">
+
+                <div class="position-absolute top-10 start-0">
+                    <br />
+                    <img src="/vector1.png" />
+                </div>
+            </div>
+            <Link href="/study-plan/notes" className="ms-4 text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
@@ -21,7 +28,7 @@ export default function ModulesPlanCards() {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Anatomy of Head And ...</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Modules Title</span>
                                     </div>
                                     <div className="col">
                                         <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>Osteology</span>
@@ -40,9 +47,7 @@ export default function ModulesPlanCards() {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="col">
-                                    <span class="badge rounded-pill text-bg-success" style={{ fontSize: "8px" }}>100l</span>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
