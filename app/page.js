@@ -1,8 +1,20 @@
 "use client"
 import { useState, useEffect } from 'react';
 import OnboardingOneSection from './components/section/onbaordingOneSection';
+import { useMediaQuery } from 'react-responsive'
+import DesktopWarning from './components/section/desktopWarning';
 
 export default function Home() {
+
+  const Desktop = ({ children }) => {
+    const isDesktop = useMediaQuery({ minWidth: 992 })
+    return isDesktop ? children : null
+  }
+
+  const Mobile = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 767 })
+    return isMobile ? children : null
+  }
 
   const [loading, setLoading] = useState(true);
 
@@ -25,14 +37,19 @@ export default function Home() {
         <main className="" style={{ height: "100vh", alignContent: "center" }}>
           <div className="d-flex align-justify-center justify-content-center">
             <h1 className="">
-              <img src="/logo.png" alt="Logo" />
+              <img src="/logo2.png" alt="Logo" style={{ width: "200px" }} />
             </h1>
           </div>
         </main>
       ) : (
         <>
+          <Desktop>
+            <DesktopWarning />
+          </Desktop>
 
-          <OnboardingOneSection />
+          <Mobile>
+            <OnboardingOneSection />
+          </Mobile>
         </>
 
       )}

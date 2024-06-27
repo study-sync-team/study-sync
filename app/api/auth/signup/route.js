@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
-import bcrypt from "bcrypt";
+import { createHmac } from 'crypto'; // Use crypto for hashing
 import supabase from "@/app/config/supabase";
 import { v4 as uuidv4 } from 'uuid';
-//import { Resend } from 'resend';
 
+// Function to hash passwords
+function hashPassword(password) {
+    const hash = createHmac('sha256', process.env.PASSWORD_SALT)
+        .update(password)
+        .digest('hex');
+    return hash;
+}
 
 export async function POST(req) {
-
     // Retrieve the headers from the incoming request
     const headersInstance = headers();
 
@@ -27,7 +32,6 @@ export async function POST(req) {
 
     // Check if the Bearer token matches the expected value from the environment variables
     if (bearer_token === process.env.MASTER_BEARER_KEY) {
-
         const json = await req.json();
 
         // Ensure required fields exist in the JSON data
@@ -49,17 +53,13 @@ export async function POST(req) {
         const { data } = await supabase
             .from('users')
             .select('*')
-            .eq('email', signup_data.email)
+            .eq('email', signup_data.email);
 
         if (data.length > 0) {
-
             return NextResponse.json({ message: "Email already exist" }, { status: 500 });
-
         } else {
-
             // Hashing password
-            const saltRounds = 10;
-            const hash = bcrypt.hashSync(signup_data.password, saltRounds);
+            const hashedPassword = hashPassword(signup_data.password);
 
             async function InsertUserDataIntoDb(email, password, fullname, country, gender, institution, grade) {
                 // Generate user id
@@ -80,9 +80,9 @@ export async function POST(req) {
                     if (error) {
                         return NextResponse.json({ message: error }, { status: 500 });
                     } else {
-                        await InsertIntoUserProfileDb(user_id, fullname, country, gender, institution, grade)
-                        //await InsertConfirmationCodeToDb(user_id)
-                        //await SendConfirmationEmail(user_id, email)
+                        await InsertIntoUserProfileDb(user_id, fullname, country, gender, institution, grade);
+                        //await InsertConfirmationCodeToDb(user_id);
+                        //await SendConfirmationEmail(user_id, email);
                         return NextResponse.json({ message: "Account Created" }, { status: 201 });
                     }
                 } catch (error) {
@@ -90,9 +90,8 @@ export async function POST(req) {
                 }
             }
 
-            {/*]
+            /*
             async function SendConfirmationEmail(user_id, email) {
-
                 function generateRandomCode() {
                     const min = 1000;
                     const max = 9999;
@@ -114,18 +113,12 @@ export async function POST(req) {
                 if (error) {
                     return console.error({ error });
                 } else {
-                    await InsertConfirmationCodeToDb(user_id, randomCode)
+                    await InsertConfirmationCodeToDb(user_id, randomCode);
                     console.log({ data });
                 }
-
             }
-            {*/}
 
-            {/*}
             async function InsertConfirmationCodeToDb(user_id, randomCode) {
-
-
-
                 const { error } = await supabase
                     .from("confirmation_code")
                     .insert({
@@ -138,14 +131,11 @@ export async function POST(req) {
                     console.error('Error inserting confirmation code:', error);
                 } else {
                     console.error('successfully inserted confirmation code');
-
                 }
-
             }
-            {*/}
+            */
 
             async function InsertIntoUserProfileDb(user_id, fullname, country, gender, institution, grade) {
-
                 const { error } = await supabase
                     .from("profile")
                     .insert({
@@ -161,11 +151,9 @@ export async function POST(req) {
                 } else {
                     console.error('successfully inserted user profile');
                 }
-
             }
 
-            return await InsertUserDataIntoDb(signup_data.email, hash, signup_data.fullname, signup_data.country, signup_data.gender, signup_data.institution, signup_data.gradePoint);
-
+            return await InsertUserDataIntoDb(signup_data.email, hashedPassword, signup_data.fullname, signup_data.country, signup_data.gender, signup_data.institution, signup_data.gradePoint);
         }
     } else {
         // Return a 403 response if the bearer token does not match
