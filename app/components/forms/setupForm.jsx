@@ -49,7 +49,7 @@ export default function SetupForm() {
             gradePoint: updatedFormData.gradePoint
         }
 
-        console.log(payload)
+        //console.log(payload)
 
         try {
 
