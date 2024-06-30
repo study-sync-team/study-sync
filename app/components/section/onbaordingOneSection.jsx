@@ -10,7 +10,7 @@ export default function OnboardingOneSection() {
                 <div className="row">
                     {/* First column takes up half of the screen */}
                     <div className="col-md-4 m-0 p-0">
-                        <img src="/onboarding1.png" className="img-fluid h-51 w-100" alt="Half screen image" />
+                        <img src="https://res.cloudinary.com/db7wwc9ex/image/upload/v1719706498/onboarding1_a7qirc.png" className="img-fluid h-51 w-100" alt="Half screen image" />
                     </div>
                     {/* Second column takes up the other half of the screen */}
                     <div className="col-md-6 mt-1">
@@ -26,9 +26,9 @@ export default function OnboardingOneSection() {
                             <img src="frame1.png" />
 
                             <div class="d-flex justify-content-between mt-4 pt-4">
-                                <button className="btn ps-4" style={{ fontFamily: "Fredoka, sans-serif", color: "#CD598F", fontWeight: "600"}}>
+                                <Link href="/signup/waitlist" className="btn ps-4" style={{ fontFamily: "Fredoka, sans-serif", color: "#CD598F", fontWeight: "600"}}>
                                     Skip
-                                </button>
+                                </Link>
 
                                 <Link href="/onboard" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600",background: "linear-gradient(to right, #D95388, #85486e)"}}>
                                     Next

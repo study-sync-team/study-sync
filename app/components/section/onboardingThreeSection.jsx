@@ -10,7 +10,7 @@ export default function OnboardingThreeSection() {
                 <div className="row">
                     {/* First column takes up half of the screen */}
                     <div className="col-md-4 m-0 p-0">
-                        <img src="/onboarding3.png" className="img-fluid h-51 w-100" alt="Half screen image" />
+                        <img src="https://res.cloudinary.com/db7wwc9ex/image/upload/v1719706498/onboarding3_gf3im4.png" className="img-fluid h-51 w-100" alt="Half screen image" />
                     </div>
                     {/* Second column takes up the other half of the screen */}
                     <div className="col-md-6 mt-1">

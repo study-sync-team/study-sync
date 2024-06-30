@@ -16,9 +16,9 @@ export default function WaitlistSuccess() {
                                 <h4>Welcome To The Future Of Learning With AI</h4>
                                 <p class="card-text">Thank you for joining study sync waitlist, this adds you to the list of early users that's gonna try out what we're building first.
                                 <br /><br />
-                                While you wait for us to launch, you can join our WhatsApp group to gt more info and connect with us
+                                While you wait for us to launch, you can join our WhatsApp group to get more info and connect with us
                                 </p>
-                                <a href="#" class="btn btn-md text-light" style={{ background: "linear-gradient(to right, #D95388, #85486e)" }}>Join WhatsApp Group</a>
+                                <a href="https://chat.whatsapp.com/FmxlJvdsFxwA004CR7Z4dF" class="btn btn-md text-light" style={{ background: "linear-gradient(to right, #D95388, #85486e)" }}>Join WhatsApp Group</a>
                             </div>
                         </div>
                     </div>
