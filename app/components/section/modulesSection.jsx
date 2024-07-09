@@ -1,53 +1,3 @@
-/*
-import ModulesPlanCards from "../cards/modulesPlanCards"
-export default function ModulesSection() {
-
-    return (
-
-        <>
-
-            <main style={{ height: "100%" }}>
-
-                <div className="container">
-                    <div className="mt-4 px-2">
-                        
-                        <div className="row row-cols-1 mt-4">
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <div className="col mb-3">
-                                <ModulesPlanCards />
-                            </div>
-                            <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                Finish
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
-
-        </>
-
-    )
-
-}
-*/
-
-
-
 "use client"
 import { useState, useEffect } from 'react';
 import ModulesPlanCards from "../cards/modulesPlanCards"
@@ -110,14 +60,16 @@ export default function ModulesSection(props) {
                 <div className="container">
                     <div className="mt-4 px-2">
 
-                        <DotLoader
-                            color={color}
-                            loading={loading}
-                            cssOverride={override}
-                            size={100}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        />
+                        <div className='mt-5'>
+                            <DotLoader
+                                color={color}
+                                loading={loading}
+                                cssOverride={override}
+                                size={100}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        </div>
 
                         <div className="row row-cols-1 mt-4">
                             {modulesData && modulesData.map(module => (

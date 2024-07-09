@@ -1,12 +1,12 @@
 import Link from "next/link"
 
-export default function StudyPlanCards() {
+export default function StudyPlanCards(props) {
 
     return (
 
         <>
 
-            <Link href="/study-plan/modules/987456" className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+            <Link href="/study-plan/modules/987456" className="text-decoration-none card bg-transparent dashnav" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
@@ -21,10 +21,10 @@ export default function StudyPlanCards() {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Anatomy of Head And ...</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"220px" }} className="d-inline-block text-truncate">{props.course_title}</span>
                                     </div>
                                     <div className="col">
-                                        <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>10 Modules</span>
+                                        <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>{props.module_count} Modules</span>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,9 @@ export default function StudyPlanCards() {
                                     <div class="dropdown">
                                         <i className="bi bi-three-dots-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                         <ul class="dropdown-menu">
+                                            {/*}
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
+                                            {*/}
                                             <li><a class="dropdown-item" href="#">Delete</a></li>
                                         </ul>
                                     </div>

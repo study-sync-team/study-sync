@@ -35,11 +35,11 @@ export async function GET(req) {
                     .eq('user_id', userId)
                 if (Array.isArray(data) && data.length === 0) {
 
-                    return NextResponse.json({ message: "Empty modules" }, { status: 200 });
+                    return NextResponse.json({ message: "Empty plan" }, { status: 200 });
 
                 } else {
 
-                    return NextResponse.json({ message: "Modules fetched successfully", data }, { status: 200 });
+                    return NextResponse.json({ message: "plans fetched successfully", data }, { status: 200 });
 
                 }
 

@@ -40,6 +40,11 @@ select option:selected{
 
 }
 
+#cardnav{
+  border: 1px solid #E0D9DE
+}
+
+
 #saveGpaModal{
   width:90%;
   position: fixed; /* Ensures it stays in the viewport */
