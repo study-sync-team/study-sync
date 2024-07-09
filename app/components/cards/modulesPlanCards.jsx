@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-export default function ModulesPlanCards() {
+export default function ModulesPlanCards(props) {
 
     return (
 
@@ -28,11 +28,9 @@ export default function ModulesPlanCards() {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Modules Title</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>{props.module_title}</span>
                                     </div>
-                                    <div className="col">
-                                        <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>Osteology</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -42,7 +40,9 @@ export default function ModulesPlanCards() {
                                     <div class="dropdown">
                                         <i className="bi bi-three-dots-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                         <ul class="dropdown-menu">
+                                            {/*}
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
+                                            {*/}
                                             <li><a class="dropdown-item" href="#">Delete</a></li>
                                         </ul>
                                     </div>

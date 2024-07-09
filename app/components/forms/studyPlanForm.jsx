@@ -90,7 +90,7 @@ export default function StudyPlanForm() {
 
         const payload = {
             //userId: localStorage.getItem('study-userId'),
-            userId: "7256677a-899b-44a6-8ce3-12db4371afd9",
+            userId: localStorage.getItem('study-userId'),
             courseTitle: formData.courseTitle,
             courseCode: formData.courseCode,
             courseDescription: formData.courseDescription,
@@ -107,10 +107,10 @@ export default function StudyPlanForm() {
             },
             body: JSON.stringify(payload)
         });
-
         if (!response.ok) {
-
-            toast.error("Could not create", {
+            const error_response = await response.json();
+            //console.log(error_response.error)
+            toast.error(`${error_response.error}`, {
                 position: "top-right"
             });
             setLoading(false)

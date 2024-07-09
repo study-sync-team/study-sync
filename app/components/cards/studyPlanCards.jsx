@@ -40,9 +40,11 @@ export default function StudyPlanCards() {
                                         </ul>
                                     </div>
                                 </div>
+                                {/*}
                                 <div className="col">
                                     <span class="badge rounded-pill text-bg-success" style={{ fontSize: "8px" }}>100l</span>
                                 </div>
+                                {*/}
                             </div>
                         </div>
                     </div>
