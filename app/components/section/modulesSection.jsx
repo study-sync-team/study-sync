@@ -1,3 +1,4 @@
+/*
 import ModulesPlanCards from "../cards/modulesPlanCards"
 export default function ModulesSection() {
 
@@ -9,9 +10,7 @@ export default function ModulesSection() {
 
                 <div className="container">
                     <div className="mt-4 px-2">
-                        {/*}
-                        Import Your component here idiot boy!!! 
-                    {*/}
+                        
                         <div className="row row-cols-1 mt-4">
                             <div className="col mb-3">
                                 <ModulesPlanCards />
@@ -35,7 +34,6 @@ export default function ModulesSection() {
                                 Finish
                             </button>
                         </div>
-                        {/* <p style={{ fontFamily: "Fredoka, sans-serif" }}>Modules component goes here</p> */}
                     </div>
                 </div>
 
@@ -46,9 +44,10 @@ export default function ModulesSection() {
     )
 
 }
+*/
 
 
-{/*}
+
 "use client"
 import { useState, useEffect } from 'react';
 import ModulesPlanCards from "../cards/modulesPlanCards"
@@ -119,16 +118,27 @@ export default function ModulesSection(props) {
                             aria-label="Loading Spinner"
                             data-testid="loader"
                         />
- 
+
                         <div className="row row-cols-1 mt-4">
                             {modulesData && modulesData.map(module => (
                                 <div className="col mb-3" key={module.id}>
                                     <ModulesPlanCards module_title={`${module.module_title}`} />
                                 </div>
                             ))}
-                            <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                Finish
-                            </button>
+                            {loading ?
+
+                                <>
+
+                                </>
+                                :
+                                <>
+                                    <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                        Finish
+                                    </button>
+                                </>
+
+                            }
+
                         </div>
 
 
@@ -142,4 +152,3 @@ export default function ModulesSection(props) {
     )
 
 }
-{*/}
