@@ -48,18 +48,22 @@ export default function Sidebar() {
                                 <span>Study Plan</span>
                             </a>
                         </li>
+                        
                         <li class="nav-item mb-2">
                             <a class="nav-link" onClick={redirectToCgpa} data-bs-dismiss="offcanvas" aria-label="Close" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-calculator me-3" style={{ color: "#E84D88" }} />
                                 <span>CGPA</span>
                             </a>
                         </li>
+                        
+                        {/*}
                         <li class="nav-item mb-2">
                             <a class="nav-link" href="/study-plan/quiz" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-cpu me-3" style={{ color: "#E84D88" }} />
                                 <span>Quiz</span>
                             </a>
                         </li>
+                        
                         <li class="nav-item mb-2">
                             <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-mortarboard me-3" style={{ color: "#E84D88" }} />

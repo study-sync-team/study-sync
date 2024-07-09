@@ -31,6 +31,7 @@ export default function Dashboard() {
                         </div>
                     </div>
 
+                    {/*}
                     <div className="row">
                         <div className="col m-0 p-1">
                             <CreatAiQuizCard />
@@ -39,15 +40,21 @@ export default function Dashboard() {
                             <CalculateCGPACard />
                         </div>
                     </div>
+                    {*/}
 
                     <div className="row mt-2">
+
                         <div className="col p-1" style={{ maxHeight: "100%" }}>
                             <AnalyticsCard />
                         </div>
-                        
+
+                        {/*}
                         <div className="col p-1">
+                            
                             <BlogPost />
+                           
                         </div>
+                         {*/}
                     </div>
 
                     <div className="mt-3">
@@ -72,7 +79,7 @@ export default function Dashboard() {
                         </div>
                         <hr />
 
-                        
+
 
                         <p className="d-flex mt-4" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
                             <span><i className="bi bi-award me-2" /></span>
@@ -88,8 +95,8 @@ export default function Dashboard() {
                                     <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
                                         Congrats, Isila !
                                     </span>
-                                    <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333"  }}>You just completed your weekly module quiz</p>
-                                    
+                                    <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333" }}>You just completed your weekly module quiz</p>
+
                                 </div>
                             </div>
                         </div>

@@ -12,12 +12,18 @@ export default function ProfileSection() {
                 <div className="container">
                     <div style={{ textAlign: "center", marginTop: "-70px" }}>
                         <img src="/profile.png" className="img-fluid h-51 " alt="Profile Image" />
+                        {/*}
+                        <h5 class="card-title placeholder-glow">
+                            <div class="placeholder p-5 rounded-circle"></div>
+                        </h5>
+                        {*/}
+
                     </div>
                     <div className="mt-3" style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} >
                         <span style={{ fontSize: "19px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>Islamiyah Yusuf</span>
                     </div>
                     <div className="">
-                    <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted">Islamiyahyusuf@gmail</p> 
+                        <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted">Islamiyahyusuf@gmail</p>
                     </div>
                     {/* <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "bold" }}>Islamiyyah Yusuf</p>
                     <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted"></p> */}
