@@ -144,7 +144,7 @@ export async function POST(req) {
         async function GoogleAi(plan_id, images, options = {}) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
-            const prompt = `Based on this schema{"modules": [{topic: "",note: ""}]} generate simplified modules for students with extensive simplified explanation content based on the images`
+            const prompt = `Generate simplified ordered modules for students with extensive simplified explanation content according to the images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
             function fileToGenerativePart(path, mimeType) {
                 return {
                     inlineData: {
@@ -176,12 +176,12 @@ export async function POST(req) {
                     console.log(chunkText);
                     text += chunkText;
                 }
-                console.log("stream", text)
+                //console.log("stream", text)
 
-                // Remove leading and trailing ```json
-                const cleanedText = text.replace(/^```json\s*|\s*```$/g, '');
+                // Remove any occurrence of ```json, ```stream, and trailing ```
+                const cleanedText = text.replace(/(```json|```stream|```)/g, '');
 
-                console.log("Generated Text from Google AI:", cleanedText); // Add this line for debugging
+                console.log("cleaned:", cleanedText); // Add this line for debugging
                 const modulesData = JSON.parse(cleanedText);
                 let modules = Array.isArray(modulesData.modules) ? modulesData.modules : []; // Ensure 'modules' is an array
 
