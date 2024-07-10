@@ -28,7 +28,7 @@ export default function ModulesPlanCards(props) {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"220px" }} className="d-inline-block text-truncate">{props.module_title}</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"200px" }} className="d-inline-block text-truncate">{props.module_title}</span>
                                     </div>
                                     
                                 </div>

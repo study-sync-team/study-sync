@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
 import { v4 as uuidv4 } from 'uuid';
 import { writeFile } from 'fs/promises';
-//import { writeFile } from 'fs/promises'; // Use promises for async/await
 import supabase from "@/app/config/supabase";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from 'fs';
