@@ -1,5 +1,10 @@
 import Link from "next/link";
-
+import { FaRegUserCircle } from "react-icons/fa";
+import { MdOutlinePayment } from "react-icons/md";
+import { MdManageAccounts } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import LogoutModal from "../modal/logoutModal";
 
 export default function ProfileSection() {
 
@@ -30,57 +35,21 @@ export default function ProfileSection() {
 
                 </div>
 
-                <Link href="" className="text-decoration-none card bg-transparent border-top-0 mt-5" style={{ border: "1px solid #E0D9DE" }}>
+                <Link href="" className="text-decoration-none card border-0 bg-transparent mt-5" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center me-3">
                                 <div className="flex-shrink-0">
 
-                                    <img src="/tree.png"></img>
+                                    <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
+                                        <FaRegUserCircle size={20}/>
+                                    </div>
 
                                 </div>
                                 <div className="flex-grow-1 ms-3">
                                     <div className="row row-cols-1">
                                         <div className="col">
-                                            <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Grade Record</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-3">
-                                <div className="row row-cols-1">
-                                    <div className="col mb-3 ms-2">
-                                        <span
-                                            style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
-                                        >
-                                            <Link
-                                                href="/dashboard"
-                                                className="text-decoration-none text-dark bi-chevron-right me-2"
-                                                style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
-                                            ></Link>
-
-                                        </span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-                <Link href="" className="text-decoration-none card bg-transparent border-top-0" style={{ border: "1px solid #E0D9DE" }}>
-                    <div className="pt-0 px-2">
-                        <div className="d-flex justify-content-between">
-                            <div className="d-flex align-items-center me-3">
-                                <div className="flex-shrink-0">
-
-                                    <img src="/tree.png"></img>
-
-                                </div>
-                                <div className="flex-grow-1 ms-3">
-                                    <div className="row row-cols-1">
-                                        <div className="col">
-                                            <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Grade Record</span>
+                                            <span style={{ fontSize: "18px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>Profile</span>
                                         </div>
 
                                     </div>
@@ -107,8 +76,173 @@ export default function ProfileSection() {
                     </div>
                 </Link>
 
+                <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                    <div className="pt-0 px-2">
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center me-3">
+                                <div className="flex-shrink-0">
+
+                                    <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
+                                        <MdManageAccounts size={20}/>
+                                    </div>
+
+                                </div>
+                                <div className="flex-grow-1 ms-3">
+                                    <div className="row row-cols-1">
+                                        <div className="col">
+                                            <span style={{ fontSize: "18px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>Account</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="row row-cols-1">
+                                    <div className="col mb-3 ms-2">
+                                        <span
+                                            style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
+                                        >
+                                            <Link
+                                                href="/dashboard"
+                                                className="text-decoration-none text-dark bi-chevron-right me-2"
+                                                style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
+                                            ></Link>
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                    <div className="pt-0 px-2">
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center me-3">
+                                <div className="flex-shrink-0">
+
+                                    <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
+                                        <MdOutlinePayment size={20}/>
+                                    </div>
+
+                                </div>
+                                <div className="flex-grow-1 ms-3">
+                                    <div className="row row-cols-1">
+                                        <div className="col">
+                                            <span style={{ fontSize: "18px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>Subscription</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="row row-cols-1">
+                                    <div className="col mb-3 ms-2">
+                                        <span
+                                            style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
+                                        >
+                                            <Link
+                                                href="/dashboard"
+                                                className="text-decoration-none text-dark bi-chevron-right me-2"
+                                                style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
+                                            ></Link>
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                    <div className="pt-0 px-2">
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center me-3">
+                                <div className="flex-shrink-0">
+
+                                    <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
+                                        <RiLockPasswordFill size={20}/>
+                                    </div>
+
+                                </div>
+                                <div className="flex-grow-1 ms-3">
+                                    <div className="row row-cols-1">
+                                        <div className="col">
+                                            <span style={{ fontSize: "18px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>Change Password</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="row row-cols-1">
+                                    <div className="col mb-3 ms-2">
+                                        <span
+                                            style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
+                                        >
+                                            <Link
+                                                href="/dashboard"
+                                                className="text-decoration-none text-dark bi-chevron-right me-2"
+                                                style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
+                                            ></Link>
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+                
+                <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                    <div className="pt-0 px-2">
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center me-3">
+                                <div className="flex-shrink-0">
+
+                                    <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
+                                        <RiLogoutBoxLine size={20}/>
+                                    </div>
+
+                                </div>
+                                <div className="flex-grow-1 ms-3">
+                                    <div className="row row-cols-1">
+                                        <div className="col">
+                                            <span style={{ fontSize: "18px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>Log Out</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <div className="row row-cols-1">
+                                    <div className="col mb-3 ms-2">
+                                        <span
+                                            style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
+                                        >
+                                            <Link
+                                                href="/dashboard"
+                                                className="text-decoration-none text-dark bi-chevron-right me-2"
+                                                style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
+                                            ></Link>
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </main>
+
+            <LogoutModal />
 
         </>
 
