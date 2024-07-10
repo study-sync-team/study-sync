@@ -43,7 +43,7 @@ export default function StudyPlanSecton() {
                 const data = await response.json();
                 setLoading(false);
                 setPlanData(data.data)
-                console.log(data.data)
+                //console.log(data.data)
             }
         } catch (error) {
             setLoading(false)
@@ -75,6 +75,7 @@ export default function StudyPlanSecton() {
                         {planData && planData.map(plan => (
                             <div className="col mb-3" key={plan.id}>
                                 <StudyPlanCards
+                                    id={`${plan.plan_id}`}
                                     course_code={`${plan.course_code}`}
                                     course_title={`${plan.course_title}`}
                                     module_count={`${plan.module_count}`}

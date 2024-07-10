@@ -6,15 +6,14 @@ export default function StudyPlanCards(props) {
 
         <>
 
-            <Link href="/study-plan/modules/987456" className="text-decoration-none card bg-transparent dashnav" style={{ border: "1px solid #E0D9DE" }}>
+            <Link href={`/study-plan/modules/${props.id}`} className="text-decoration-none card bg-transparent dashnav" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
                             <div className="flex-shrink-0">
                                 <div className="mt-3 mx-auto d-flex justify-content-center align-items-center" style={{ backgroundColor: "#EBDEEA", width: '50px', height: '50px', borderRadius: '50%' }}>
                                     <span style={{ fontWeight: "600", fontSize: "14px", fontFamily: "Fredoka, sans-serif" }}>
-                                        <span className="me-1" style={{ color: "#65CB7C", fontSize: "13px" }}>A</span>
-                                        <span style={{ color: "#E04345", fontSize: "13px" }}>301</span>
+                                        <span style={{ color: "#E04345", fontSize: "13px",maxWidth:"41px" }} className="d-inline-block text-truncate">{props.course_code}</span>
                                     </span>
                                 </div>
                             </div>

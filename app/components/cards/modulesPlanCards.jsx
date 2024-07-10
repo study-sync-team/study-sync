@@ -13,7 +13,7 @@ export default function ModulesPlanCards(props) {
                     <img src="/vector1.png" />
                 </div>
             </div>
-            <Link href="/study-plan/notes" className="ms-4 text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+            <Link href={`/study-plan/notes/${props.module_id}/${props.plan_id}`} className="ms-4 text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
@@ -28,7 +28,7 @@ export default function ModulesPlanCards(props) {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>{props.module_title}</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"220px" }} className="d-inline-block text-truncate">{props.module_title}</span>
                                     </div>
                                     
                                 </div>

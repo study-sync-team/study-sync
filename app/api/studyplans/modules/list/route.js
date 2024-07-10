@@ -22,13 +22,42 @@ export async function GET(req) {
         const searchParams = req.nextUrl.searchParams;
         const planId = searchParams.get('plan_id');
 
+        if (searchParams.get('module_id')) {
+            try {
+
+
+                const { data } = await supabase
+                    .from('study_plan_modules')
+                    .select('note,module_title')
+                    .eq('module_id', searchParams.get('module_id'))
+                    .single()
+                if (Array.isArray(data) && data.length === 0) {
+
+                    return NextResponse.json({ message: "Empty notes" }, { status: 200 });
+
+                } else {
+
+                    return NextResponse.json({ message: "Notes fetched successfully", data }, { status: 200 });
+
+                }
+
+            } catch (error) {
+
+                return NextResponse.json({ message: error }, { status: 500 });
+
+            }
+        } else {
+            //return NextResponse.json({ message: "Empty query" }, { status: 500 });
+
+        }
+
         if (!planId || planId.trim() === "") {
             return NextResponse.json({ message: "Empty query" }, { status: 500 });
         } else {
 
             try {
 
-                //checking if the email exists
+
                 const { data } = await supabase
                     .from('study_plan_modules')
                     .select('*')

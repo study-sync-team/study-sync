@@ -1,6 +1,56 @@
+"use client"
+import { useState, useEffect } from 'react';
+import DotLoader from "react-spinners/DotLoader";
 import Link from "next/link"
 
-export default function NotesSection() {
+const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
+
+export default function NotesSection(props) {
+
+    const [loading, setLoading] = useState(false)
+    let [color, setColor] = useState("#85486e");
+    const [notesData, setNotesData] = useState(null);
+    const [noteTitle, setNoteTitle] = useState(null)
+
+    useEffect(() => {
+
+        fetchNotes();
+
+    }, [])
+
+    const fetchNotes = async () => {
+        setLoading(true)
+
+        const url = `/api/studyplans/modules/list?module_id=${props.module_id}`
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${BearerToken}`
+                }
+            });
+            if (!response.ok) {
+                setLoading(false);
+                throw new Error('Failed to fetch data');
+            } else {
+                const data = await response.json();
+                setLoading(false);
+                setNotesData(data.data.note)
+                setNoteTitle(data.data.module_title)
+                //console.log(data.data.note)
+            }
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+
+    }
 
     return (
 
@@ -10,47 +60,36 @@ export default function NotesSection() {
 
                 <div className="container">
                     <div className="mt-4 px-2">
-
-                        <p style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "bold" }}>Introduction to Osteology of the Head</p>
-                    </div>
-                    <div className="mt-2 px-2">
-                        <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "left", textOverflow: "inherit" }}>
-                            Osteology of the head is divided  the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts, one thing i have is
-                        </p>
-                    </div>
-
-                    <div className="mt-4 px-2">
-
-                        <p style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "bold" }}>Bones of the Head</p>
-                    </div>
-
-                    <div className="mt-2 px-2">
-                        <ul style={{ fontFamily: "Fredoka, sans-serif", textAlign: "left", textOverflow: "inherit" }}>
-                            <li className="pb-2"> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                            <li className="pb-2"> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                            <li> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                        </ul>
-
-                    </div>
-                    <div className="mt-4 px-2">
-
-                        <p style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "bold" }}>Bones of the Head</p>
+                        <div className='mt-5'>
+                            <DotLoader
+                                color={color}
+                                loading={loading}
+                                cssOverride={override}
+                                size={100}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        </div>
+                        <h4 className='mb-4'>{noteTitle}</h4>
+                        <p style={{ fontFamily: "Fredoka, sans-serif", whiteSpace: "pre-wrap" }}>{notesData}</p>
                     </div>
 
-                    <div className="mt-2 px-2">
-                        <ul style={{ fontFamily: "Fredoka, sans-serif", textAlign: "left", textOverflow: "inherit" }}>
-                            <li className="pb-2"> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                            <li className="pb-2"> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                            <li> Osteology of the head is divided into 2 parts, one thing i have is  the head is divided into 2 parts.              </li>
-                        </ul>
+                    {loading ?
+                        <>
 
-                    </div>
+                        </>
+                        :
+                        <>
+                            <div className="mt-5 mb-3 d-grid ">
+                                <Link href="/study-plan/quiz" className="btn btn-block border-0 text-white px-5 py-2 " style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                    Take Quiz
+                                </Link>
+                            </div>
+                        </>
+                    }
 
-                    <div className="mt-5 mb-3 d-grid ">
-                        <Link href="/study-plan/quiz" className="btn btn-block border-0 text-white px-5 py-2 " style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                            Take Quiz
-                        </Link>
-                    </div>
+
+
                 </div>
 
             </main>

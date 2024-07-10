@@ -144,7 +144,7 @@ export async function POST(req) {
         async function GoogleAi(plan_id, images, options = {}) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
-            const prompt = `Based on this schema{"modules": [{topic: "",note: ""}]} give a simple to read data based on the images`
+            const prompt = `Based on this schema{"modules": [{topic: "",note: ""}]} generate simplified modules for students with extensive simplified explanation content based on the images`
             function fileToGenerativePart(path, mimeType) {
                 return {
                     inlineData: {

@@ -86,7 +86,7 @@ export default function StudyPlanForm() {
         formData.courseImages.forEach((image, index) => {
             data.append(`courseImage${index}`, image);
         });
-        console.log(formData)
+        //console.log(formData)
 
         const payload = {
             //userId: localStorage.getItem('study-userId'),

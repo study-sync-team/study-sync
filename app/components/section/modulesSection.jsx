@@ -41,7 +41,7 @@ export default function ModulesSection(props) {
                 const data = await response.json();
                 setLoading(false);
                 setModulesData(data.modules)
-                console.log(data.modules)
+                //console.log(data.modules)
             }
         } catch (error) {
             setLoading(false)
@@ -71,10 +71,10 @@ export default function ModulesSection(props) {
                             />
                         </div>
 
-                        <div className="row row-cols-1 mt-4">
+                        <div className="row row-cols-1 mt-4 mb-5">
                             {modulesData && modulesData.map(module => (
                                 <div className="col mb-3" key={module.id}>
-                                    <ModulesPlanCards module_title={`${module.module_title}`} />
+                                    <ModulesPlanCards plan_id={`${props.plan_id}`} module_id={`${module.module_id}`} module_title={`${module.module_title}`} />
                                 </div>
                             ))}
                             {loading ?
@@ -90,6 +90,8 @@ export default function ModulesSection(props) {
                                 </>
 
                             }
+
+                            <br /><br />
 
                         </div>
 
