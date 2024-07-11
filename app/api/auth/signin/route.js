@@ -116,7 +116,7 @@ export async function POST(req) {
                         }
                     }
                 } else {
-                    return NextResponse.json({ message: "User Not Found" }, { status: 500 });
+                    return NextResponse.json({ message: "Wrong Password" }, { status: 500 });
                 }
             }
         }

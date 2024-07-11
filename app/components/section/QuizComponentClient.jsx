@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Transition } from 'react-transition-group';
 import Modal from 'react-modal';
-import QuizCalculator from '../cards/quizCalculator.jsx';
 import './quiz.css'
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Link from 'next/link';
@@ -12,7 +11,6 @@ const QuizComponentClient = ({ quiz }) => {
   const [userResponses, setUserResponses] = useState(Array(quiz.questions.length).fill(null));
   const [showModal, setShowModal] = useState(false);
   const [showReview, setShowReview] = useState(false);
-  const [showCalculatorModal, setShowCalculatorModal] = useState(false);
 
   const selectOption = (index) => {
     setUserResponses([...userResponses.slice(0, questionIndex), index, ...userResponses.slice(questionIndex + 1)]);
@@ -185,30 +183,6 @@ const QuizComponentClient = ({ quiz }) => {
           </div>
         )}
 
-        <Modal
-          isOpen={showCalculatorModal}
-          onRequestClose={handleCloseCalculator}
-          contentLabel="Calculator"
-          style={{
-            content: {
-              padding: '0px',
-              margin: '0px',
-              height: '100%',
-              width: '',
-              borderRadius: '15px'
-            },
-          }}
-        >
-          <div className="calculatorModalContent p-0 m-0">
-
-            {/* Add your calculator component here */}
-            <QuizCalculator />
-            {/* <div className='w-100 text-center mt-2'>
-
-              <button className='btn px-5 text-white' onClick={handleCloseCalculator}  style={{background: 'linear-gradient(to right, #CB5284, #754968)'}}>Close</button>
-            </div> */}
-          </div>
-        </Modal>
       </div>
 
     </section>

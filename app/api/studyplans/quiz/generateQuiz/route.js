@@ -58,17 +58,18 @@ export async function POST(req) {
             }
         }
 
-        async function InsertIntoQuizTable(quiz) {
+        async function InsertIntoQuizTable(plan_id, module_id,quiz) {
+            const quiz_id = uuidv4()
             try {
                 const promises = quiz.map(async (quizzes) => {
                     const { question, option_a, option_b, option_c, option_d, right_option } = quizzes; // Destructure topic and note from each module object
-
+                    
                     const { error } = await supabase
                         .from("quiz")
                         .insert({
-                            "plan_id": uuidv4(),
-                            "module_id": uuidv4(),
-                            "quiz_id": uuidv4(),
+                            "plan_id": plan_id,
+                            "module_id": module_id,
+                            "quiz_id": quiz_id,
                             "question": question,
                             "option_a": option_a,
                             "option_b": option_b,
@@ -82,7 +83,7 @@ export async function POST(req) {
                     }
                 });
                 await Promise.all(promises);
-                return { message: "Quiz Created" };
+                return { message: "Quiz Created", quiz_id: quiz_id};
             } catch (error) {
                 throw new Error(`Error in InsertIntoQuizTable: ${error}`);
             }
@@ -90,7 +91,7 @@ export async function POST(req) {
 
         try {
             const quiz = await GenerateQuizWithGemini(generate_quiz_data.note, { generationConfig: { response_mime_type: "application/json" } });
-            const result = await InsertIntoQuizTable(quiz);
+            const result = await InsertIntoQuizTable(generate_quiz_data.plan_id, generate_quiz_data.module_id, quiz);
             return NextResponse.json(result, { status: 200 });
         } catch (error) {
             return NextResponse.json({ error: error.message }, { status: 500 });

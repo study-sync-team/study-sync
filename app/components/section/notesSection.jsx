@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import DotLoader from "react-spinners/DotLoader";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/navigation'
+
 
 const override = {
     display: "block",
@@ -17,6 +19,9 @@ export default function NotesSection(props) {
     const [color, setColor] = useState("#85486e");
     const [notesData, setNotesData] = useState(null);
     const [noteTitle, setNoteTitle] = useState(null)
+
+    const router = useRouter()
+
 
     useEffect(() => {
 
@@ -85,10 +90,11 @@ export default function NotesSection(props) {
         } else {
             setQuizLoading(false)
             const data_response = await response.json();
+            console.log(data_response)
             toast.success( `${data_response.message}`, {
                 position: "top-right"
             });
-            //router.push(`/study-plan/modules/${plan_id}`);
+            router.push(`/study-plan/quiz/${data_response.quiz_id}/${props.plan_id}/${props.module_id}`)
             
 
         }

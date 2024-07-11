@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapClientJs from "./components/bootstrapJs/bootstrapJs";
+import { CookiesProvider } from 'next-client-cookies/server';
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +21,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body className={inter.className} style={{ backgroundColor: "#F7F2F6" }}>{children}</body>
+      <body className={inter.className} style={{ backgroundColor: "#F7F2F6" }}><CookiesProvider>{children}</CookiesProvider></body>
       <BootstrapClientJs />
     </html>
   );

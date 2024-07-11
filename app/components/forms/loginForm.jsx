@@ -3,7 +3,8 @@ import { useState, useEffect } from "react"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from 'next/navigation'
-import { cookies } from 'next/headers'
+import { useCookies } from 'next-client-cookies';
+
 
 export default function LoginForm() {
 
@@ -22,6 +23,8 @@ export default function LoginForm() {
         password: ''
     });
 
+    const cookies = useCookies();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -31,10 +34,19 @@ export default function LoginForm() {
     };
 
     async function checkIfUserIsLoggedIn(){
-
-
+        const userId = localStorage.getItem('study-userId');
+    if (userId) {
+        // The user is logged in, perform actions as needed
+        console.log('User is logged in with ID:', userId);
+        return true;
+    } else {
+        // The user is not logged in, perform actions as needed
+        console.log('User is not logged in');
+        return false;
+    }
 
     }
+
 
     const handleSubmit = async (e) => {
 
@@ -62,20 +74,22 @@ export default function LoginForm() {
         });
 
         if (!response.ok) {
-
-            toast.error("Wrong email or password", {
+            setLoading(false)
+            const error_response = await response.json();
+            toast.error(`${error_response.message}`, {
                 position: "top-right"
             });
-            setLoading(false)
+            
         } else {
             const data = await response.json();
             router.push('/dashboard');
-            toast.success("Login successful", {
+            setLoading(false)
+            toast.success(`${data.message}`, {
                 position: "top-right"
             });
             const user_id = data.data.user_id
             localStorage.setItem('study-userId', user_id);
-            setLoading(false)
+            
             //        const accessToken = localStorage.getItem('accessToken');
             //console.log(parsed_data)
         }
