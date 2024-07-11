@@ -5,7 +5,6 @@ import supabase from "@/app/config/supabase";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function POST(req) {
-
     // Retrieve the headers from the incoming request
     const headersInstance = headers();
 
@@ -20,7 +19,6 @@ export async function POST(req) {
 
     // Check if the Bearer token matches the expected value from the environment variables
     if (bearer_token === process.env.MASTER_BEARER_KEY) {
-
         const json = await req.json();
 
         // Ensure required fields exist in the JSON data
@@ -35,13 +33,11 @@ export async function POST(req) {
         }
 
         async function GenerateQuizWithGemini(note, options = {}) {
-
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
-            const prompt = `Generate simplified quiz for students based on this note contents ${note} strictly based on this array schema{"quiz": [{question: "",option_a: "", option_b: "", option_c: "", option_d: "", right_option: ""}]}`
+            const prompt = `Generate simplified quiz for students based on this note contents ${note} strictly based on this array schema{"quiz": [{question: "",option_a: "", option_b: "", option_c: "", option_d: "", right_option: ""}]}`;
 
             try {
-
                 const generatedContent = await model.generateContentStream([prompt]);
                 let text = '';
                 for await (const chunk of generatedContent.stream) {
@@ -55,21 +51,51 @@ export async function POST(req) {
 
                 console.log("cleaned:", cleanedText); // Add this line for debugging
                 const quizData = JSON.parse(cleanedText);
-                let quiz = Array.isArray(quizData.quiz) ? quizData.quiz : []; // Ensure 'modules' is an array
-
-                
-                return NextResponse.json({ quiz: quiz}, { status: 200 });
-
+                return Array.isArray(quizData.quiz) ? quizData.quiz : []; // Ensure 'quiz' is an array
 
             } catch (error) {
-                return NextResponse.json({ error: error }, { status: 500 });
-
+                throw new Error(`Error generating quiz: ${error}`);
             }
-
         }
 
-        return GenerateQuizWithGemini(generate_quiz_data.note, { generationConfig: { response_mime_type: "application/json" } })
+        async function InsertIntoQuizTable(quiz) {
+            try {
+                const promises = quiz.map(async (quizzes) => {
+                    const { question, option_a, option_b, option_c, option_d, right_option } = quizzes; // Destructure topic and note from each module object
 
+                    const { error } = await supabase
+                        .from("quiz")
+                        .insert({
+                            "plan_id": uuidv4(),
+                            "module_id": uuidv4(),
+                            "quiz_id": uuidv4(),
+                            "question": question,
+                            "option_a": option_a,
+                            "option_b": option_b,
+                            "option_c": option_c,
+                            "option_d": option_d,
+                            "right_option": right_option
+                        });
+                    if (error) {
+                        console.log(error);
+                        throw new Error(`Error inserting quiz: ${error}`);
+                    }
+                });
+                await Promise.all(promises);
+                return { message: "Quiz Created" };
+            } catch (error) {
+                throw new Error(`Error in InsertIntoQuizTable: ${error}`);
+            }
+        }
+
+        try {
+            const quiz = await GenerateQuizWithGemini(generate_quiz_data.note, { generationConfig: { response_mime_type: "application/json" } });
+            const result = await InsertIntoQuizTable(quiz);
+            return NextResponse.json(result, { status: 200 });
+        } catch (error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        }
+    } else {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
 }

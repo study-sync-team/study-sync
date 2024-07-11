@@ -9,7 +9,7 @@ export default function Notes({ params }) {
 
             <Header title="Note" icon="bi-chevron-left" route={`/study-plan/modules/${params.plan_id}`} />
 
-            <NotesSection module_id={params.id}/>
+            <NotesSection plan_id={params.plan_id} module_id={params.id}/>
         </>
 
     )

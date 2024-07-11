@@ -1,11 +1,17 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from 'next/navigation'
-import Link from "next/link";
+import { cookies } from 'next/headers'
 
 export default function LoginForm() {
+
+    useEffect(() => {
+
+        checkIfUserIsLoggedIn();
+
+    }, [])
 
     const router = useRouter()
 
@@ -23,6 +29,12 @@ export default function LoginForm() {
             [name]: value,
         }));
     };
+
+    async function checkIfUserIsLoggedIn(){
+
+
+
+    }
 
     const handleSubmit = async (e) => {
 
