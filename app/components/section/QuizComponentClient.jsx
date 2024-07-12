@@ -1,16 +1,30 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
+import DotLoader from "react-spinners/DotLoader";
 import Modal from 'react-modal';
-import './quiz.css'
+import './quiz.css';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Link from 'next/link';
 
-const QuizComponentClient = ({ quiz }) => {
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
+
+const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [userResponses, setUserResponses] = useState(Array(quiz.questions.length).fill(null));
+  const [userResponses, setUserResponses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [color, setColor] = useState("#85486e");
+
+  useEffect(() => {
+    if (quiz && quiz.questions) {
+      setUserResponses(Array(quiz.questions.length).fill(null));
+    }
+  }, [quiz]);
 
   const selectOption = (index) => {
     setUserResponses([...userResponses.slice(0, questionIndex), index, ...userResponses.slice(questionIndex + 1)]);
@@ -48,6 +62,21 @@ const QuizComponentClient = ({ quiz }) => {
   };
 
   const handleSubmit = () => {
+    const payload = quiz.questions.map((question, index) => {
+      const userResponseIndex = userResponses[index];
+      const correctResponse = question.responses.find(response => response.correct);
+      return {
+        plan_id: plan_id,
+        quiz_id: quiz_id,
+        module_id: module_id,
+        user_id: localStorage.getItem('study-userId'),
+        question: question.text,
+        selectedOption: question.responses[userResponseIndex]?.text,
+        correctOption: correctResponse.text,
+        isCorrect: question.responses[userResponseIndex]?.correct || false
+      };
+    });
+    console.log(payload)
     setShowModal(true);
   };
 
@@ -55,15 +84,22 @@ const QuizComponentClient = ({ quiz }) => {
     setShowReview(true);
   };
 
-  const handleOpenCalculator = () => {
-    setShowCalculatorModal(true);
-  };
+  const isLastQuestion = quiz && quiz.questions && questionIndex === quiz.questions.length - 1;
 
-  const handleCloseCalculator = () => {
-    setShowCalculatorModal(false);
-  };
-
-  const isLastQuestion = questionIndex === quiz.questions.length - 1;
+  if (!quiz || !quiz.questions) {
+    return <>
+      <div>
+        <DotLoader
+          color={color}
+          loading={state}
+          cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    </>;
+  }
 
   return (
     <section className="container w-100">
@@ -79,13 +115,11 @@ const QuizComponentClient = ({ quiz }) => {
             <div className="questionContainer">
               <header>
                 <div className="progressContainer mb-2">
-                  <progress className="progress col-12 is-small" style={{ height: "5px" }} value={(questionIndex / quiz.questions.length) * 100} max="100">
-                    {(questionIndex / quiz.questions.length) * 100}%
+                  <progress className="progress col-12 is-small" style={{ height: "5px" }} value={(questionIndex + 1) / quiz.questions.length * 100} max="100">
+                    {(questionIndex + 1) / quiz.questions.length * 100}%
                   </progress>
                   <p className='my-3 text-muted' style={{ fontWeight: '500' }}>QUESTION {questionIndex + 1}/{quiz.questions.length}</p>
                 </div>
-
-
               </header>
               <h5 className="titleContainer title mb-4" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", color: "#333333" }}>{quiz.questions[questionIndex].text}</h5>
               <div className="optionContainer">
@@ -94,7 +128,6 @@ const QuizComponentClient = ({ quiz }) => {
                     className={`option ${userResponses[questionIndex] === index ? 'is-selected' : ''}`}
                     onClick={() => selectOption(index)}
                     key={index}
-
                     style={{
                       backgroundColor: userResponses[questionIndex] === index ? '#DBC7CF' : 'transparent',
                       borderRadius: '0.5rem',
@@ -154,10 +187,9 @@ const QuizComponentClient = ({ quiz }) => {
             },
           }}
         >
-          {/* <h2>Quiz Score</h2> */}
           <div className='ms-5'>
             <div className='position-absolute top-0 end-0'>
-              <IoIosCloseCircleOutline size={20} onClick={closeModal}/>
+              <IoIosCloseCircleOutline size={20} onClick={closeModal} />
             </div>
           </div>
           <div className='scoreImg'>
@@ -182,11 +214,9 @@ const QuizComponentClient = ({ quiz }) => {
             </div>
           </div>
         )}
-
       </div>
-
     </section>
   );
-}
+};
 
 export default QuizComponentClient;
