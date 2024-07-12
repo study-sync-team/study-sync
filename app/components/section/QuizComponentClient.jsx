@@ -62,6 +62,7 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
   };
 
   const handleSubmit = () => {
+    const user_score = score()
     const payload = quiz.questions.map((question, index) => {
       const userResponseIndex = userResponses[index];
       const correctResponse = question.responses.find(response => response.correct);
@@ -73,7 +74,8 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
         question: question.text,
         selectedOption: question.responses[userResponseIndex]?.text,
         correctOption: correctResponse.text,
-        isCorrect: question.responses[userResponseIndex]?.correct || false
+        isCorrect: question.responses[userResponseIndex]?.correct || false,
+        score: user_score
       };
     });
     console.log(payload)

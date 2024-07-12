@@ -26,7 +26,7 @@ export async function POST(req) {
         }
 
         for (const item of json) {
-            if (!item.plan_id || !item.quiz_id || !item.module_id || !item.user_id || !item.question || !item.selectedOption || !item.correctOption || typeof item.isCorrect !== 'boolean') {
+            if (!item.plan_id || !item.quiz_id || !item.module_id || !item.user_id || !item.question || !item.selectedOption || !item.correctOption || typeof item.isCorrect !== 'boolean' || !item.score) {
                 return NextResponse.json({ error: 'Missing or invalid required fields' }, { status: 400 });
             }
         }
@@ -49,6 +49,21 @@ export async function POST(req) {
             .insert(quizData);
         if (error) {
             return NextResponse.json({ error: error }, { status: 500 });
+        }
+        const scoreData = {
+            quiz_id: json[0].quiz_id,
+            user_id: json[0].user_id,
+            module_id: json[0].module_id,
+            score: json[0].score,
+            plan_id: json[0].plan_id,
+        };
+        //insert score into table
+        const { error: scoreError } = await supabase
+            .from("quiz_results")
+            .insert(scoreData);
+
+        if (scoreError) {
+            return NextResponse.json({ error: scoreError }, { status: 500 });
         }
 
         return NextResponse.json({ message: 'Quiz submitted successfully' }, { status: 200 });
