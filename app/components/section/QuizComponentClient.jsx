@@ -6,6 +6,9 @@ import Modal from 'react-modal';
 import './quiz.css';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Link from 'next/link';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const override = {
   display: "block",
@@ -13,12 +16,13 @@ const override = {
   borderColor: "red",
 };
 
-const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
+const QuizComponentClient = ({ quiz, state, quiz_id, plan_id, module_id }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userResponses, setUserResponses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [color, setColor] = useState("#85486e");
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (quiz && quiz.questions) {
@@ -61,7 +65,8 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
     setShowModal(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setLoading(true)
     const user_score = score()
     const payload = quiz.questions.map((question, index) => {
       const userResponseIndex = userResponses[index];
@@ -78,8 +83,31 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
         score: user_score
       };
     });
+
+    const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+
+    const response = await fetch('/api/studyplans/quiz/submitQuestions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${BearerToken}`
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) {
+      setLoading(false)
+      const error_response = await response.json();
+      //console.log(error_response.error)
+      toast.error(`${error_response.error}`, {
+        position: "top-right"
+      });
+
+    } else {
+      const data_response = await response.json();
+      setLoading(false)
+      setShowModal(true);
+    }
     console.log(payload)
-    setShowModal(true);
   };
 
   const handleQuizCompletion = () => {
@@ -150,8 +178,8 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
                   <button className="button btn px-5 text-white" style={{ background: 'linear-gradient(to right, #CB5284, #754968)' }} onClick={prev} disabled={questionIndex < 1}>
                     Back
                   </button>
-                  <button className={`button btn px-5 text-white  ${userResponses[questionIndex] === null ? '' : 'is-active'}`} onClick={isLastQuestion ? handleSubmit : next} style={{ background: 'linear-gradient(to right, #CB5284, #754968)' }}>
-                    {isLastQuestion ? 'Submit' : 'Next'}
+                  <button disabled={loading} className={`button btn px-5 text-white  ${userResponses[questionIndex] === null ? '' : 'is-active'}`} onClick={isLastQuestion ? handleSubmit : next} style={{ background: 'linear-gradient(to right, #CB5284, #754968)' }}>
+                    {isLastQuestion ? (loading ? 'Pls wait...' : 'Submit') : 'Next'}
                   </button>
                 </nav>
               </footer>
@@ -164,7 +192,6 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
               <h2 className="title">You did {score() > 7 ? 'an amazing' : score() < 4 ? 'a poor' : 'a good'} job!</h2>
               <p className="subtitle">Total score: {score()} / {quiz.questions.length}</p>
               <br />
-              <button className="button" onClick={handleSubmit}>Submit</button>
               <button className="button" onClick={restart}>Restart <i className="fa fa-refresh"></i></button>
             </div>
           )}
@@ -217,6 +244,7 @@ const QuizComponentClient = ({ quiz , state, quiz_id, plan_id, module_id}) => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </section>
   );
 };
