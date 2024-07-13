@@ -31,6 +31,8 @@ export async function POST(req) {
             }
         }
 
+        const user_quiz_id = uuidv4()
+
         // Transform each item in the array to the desired format
         const quizData = json.map(item => ({
             plan_id: item.plan_id,
@@ -40,7 +42,8 @@ export async function POST(req) {
             selected_option: item.selectedOption,
             user_id: item.user_id,
             correct_option: item.correctOption,
-            status: item.isCorrect
+            status: item.isCorrect,
+            user_quiz_id: user_quiz_id
         }));
 
         // Insert the transformed data into the Supabase table
@@ -66,7 +69,7 @@ export async function POST(req) {
             return NextResponse.json({ error: scoreError }, { status: 500 });
         }
 
-        return NextResponse.json({ message: 'Quiz submitted successfully' }, { status: 200 });
+        return NextResponse.json({ message: 'Quiz submitted successfully', user_quiz_id: user_quiz_id}, { status: 200 });
 
 
     } else {

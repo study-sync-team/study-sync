@@ -23,6 +23,8 @@ const QuizComponentClient = ({ quiz, state, quiz_id, plan_id, module_id }) => {
   const [showReview, setShowReview] = useState(false);
   const [color, setColor] = useState("#85486e");
   const [loading, setLoading] = useState(false)
+  const [scores, setScore] = useState(0)
+  const [userQuizId, setUserQuizId] = useState(null)
 
   useEffect(() => {
     if (quiz && quiz.questions) {
@@ -104,7 +106,10 @@ const QuizComponentClient = ({ quiz, state, quiz_id, plan_id, module_id }) => {
 
     } else {
       const data_response = await response.json();
+      console.log(data_response.user_quiz_id)
+      setUserQuizId(data_response.user_quiz_id)
       setLoading(false)
+      setScore(user_score)
       setShowModal(true);
     }
     console.log(payload)
@@ -225,7 +230,7 @@ const QuizComponentClient = ({ quiz, state, quiz_id, plan_id, module_id }) => {
           </div>
 
           <h1 style={{ color: '#CB5284', fontWeight: '900', fontSize: '25px' }}>{score()} / {quiz.questions.length}</h1>
-          <Link href="/study-plan/quiz/result" className="button btn px-5 text-white" style={{ background: 'linear-gradient(to right, #CB5284, #754968)' }}>Review</Link>
+          <Link href={`/study-plan/quiz/result/${quiz_id}/${plan_id}/${module_id}/${scores}/${quiz.questions.length}/${userQuizId}`} className="button btn px-5 text-white" style={{ background: 'linear-gradient(to right, #CB5284, #754968)' }}>Review</Link>
         </Modal>
         {showReview && (
           <div className="modal reviewQuestions container p-3" style={{ display: 'block' }}>
