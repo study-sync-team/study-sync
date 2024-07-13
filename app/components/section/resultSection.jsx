@@ -4,17 +4,30 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaRegCheckCircle } from "react-icons/fa";
 import Link from "next/link";
 import { useState, useEffect } from 'react';
+import DotLoader from "react-spinners/DotLoader";
 
+const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 export default function ResultSection(props) {
 
     const [scorePercentage, setScorePercentage] = useState(0);
     const [remainingToFull, setRemainingToFull] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [remainingStatus, setRemainingStatus] = useState(false)
+    const [resultData, setResultData] = useState(null);
+    const [resultLoading, setResultLoading] = useState(false);
+    let [color, setColor] = useState("#85486e");
+
 
     useEffect(() => {
 
         calculateScorePercentage();
+
+        fetchResults()
 
     }, [])
 
@@ -23,12 +36,51 @@ export default function ResultSection(props) {
         const total = props.total
 
         if (total > 0) {
-            const percentage = (score / total) * 100;
+            let percentage = (score / total) * 100;
             setScorePercentage(percentage);
-            const remaining = 100 - percentage;
-            setRemainingToFull(remaining > 0 ? remaining : 0)
+
+            if (percentage < 100) {
+                setRemainingStatus(true)
+                const remaining = 100 - percentage;
+                setRemainingToFull(remaining > 0 ? remaining : 0)
+            } else {
+                setRemainingStatus(false)
+            }
+
         }
         setLoading(false)
+
+    }
+
+    const fetchResults = async () => {
+        setResultLoading(true)
+
+        const url = `/api/studyplans/quiz/fetchResults?user_quiz_id=${props.user_quiz_id}`
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+
+        try {
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${BearerToken}`
+                }
+            });
+            if (!response.ok) {
+                setLoading(false);
+                throw new Error('Failed to fetch data');
+            } else {
+                const data = await response.json();
+                setResultLoading(false);
+                setResultData(data.data)
+                console.log(data.data)
+            }
+
+        } catch (error) {
+            setResultLoading(false);
+            console.log(error)
+        }
 
     }
 
@@ -48,7 +100,13 @@ export default function ResultSection(props) {
                             <><span>Loading</span></>
                             :
                             <>
-                                <span><b>TO PASS</b> {remainingToFull.toFixed(2)} or higher</span>
+                                {remainingStatus ?
+                                    <>
+                                        <span><b>TO PASS</b> {remainingToFull.toFixed(1)} or higher</span>
+                                    </>
+                                    :
+                                    <></>
+                                }
                             </>
                         }
                     </div>
@@ -66,7 +124,7 @@ export default function ResultSection(props) {
                             <div className={`d-flex align-content-center justify-content-center ${scorePercentage < 50 ? "text-danger" : "text-success"
                                 }`}>
 
-                                <span><b>{scorePercentage.toFixed(2)} %</b></span>
+                                <span><b>{scorePercentage.toFixed(1)} %</b></span>
                             </div>
                         </>
                     }
@@ -85,61 +143,102 @@ export default function ResultSection(props) {
                                 </>
                                 :
                                 <>
-                                    <b>{scorePercentage.toFixed(2)}%</b>
+                                    <b>{scorePercentage.toFixed(1)}%</b>
                                 </>
                             }
 
                         </div>
 
+                        <DotLoader
+                            color={color}
+                            loading={resultLoading}
+                            cssOverride={override}
+                            size={100}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                         <div className="row row-cols-1 mt-4">
-                            <div className="col mb-3">
-                                <div className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
-                                    <div className="card-body ">
-                                        <h6 style={{ fontFamily: "Fredoka, sans-serif", fontWeight: '400', color: "#333333" }}>QUESTION </h6>
-                                        <p className="card-text" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: 500 }}>How many bones are in the Skull ?</p>
-                                        <div className="alert alert-danger text-danger border-0" style={{ backgroundColor: "#F1E3EF", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>
-                                            <IoIosCloseCircleOutline className="me-1" size={20} /> Incorrect
+                            {resultData && resultData.map(result => (
+                                <>
+                                    <div className="col mb-3" key={result.id}>
+                                        <div className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+                                            <div className="card-body ">
+                                                <h6 style={{ fontFamily: "Fredoka, sans-serif", fontWeight: '400', color: "#333333" }}>QUESTION </h6>
+                                                <p className="card-text" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: 500 }}>{result.question}?</p>
+                                                <div className="d-flex align-content-center justify-content-center">
+                                                    <div class="hstack gap-3 mb-4">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="collapse" href={`#selected${result.id}`} role="button" aria-expanded="false" aria-controls={`selected${result.id}`}>selected answer</button>
+                                                        <div class="vr"></div>
+                                                        <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="collapse" href={`#correct${result.id}`} role="button" aria-expanded="false" aria-controls={`correct${result.id}`}>Correct answer</button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="collapse mb-4" id={`selected${result.id}`}>
+                                                    <div class="card">
+                                                        <div className="card-header">
+                                                            <span className="text-muted">
+                                                                Selected Answer
+                                                            </span>
+                                                        </div>
+                                                        <div className="card-body">
+                                                            {result.selected_option}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="collapse mb-4" id={`correct${result.id}`}>
+                                                    <div class="card">
+                                                        <div className="card-header">
+                                                            <span className="text-muted">
+                                                                Correct Answer
+                                                            </span>
+                                                        </div>
+                                                        <div className="card-body text-success">
+                                                            {result.correct_option}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                {result.status === "true" || result.status === true ? (
+                                                    <div className="alert alert-success text-success border-0" style={{ backgroundColor: "#F1E3EF", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>
+
+                                                        <FaRegCheckCircle className="me-1" size={20} /> Correct
+                                                    </div>
+                                                ) : (
+                                                    <div className="alert alert-danger text-danger border-0" style={{ backgroundColor: "#F1E3EF", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>
+                                                        <IoIosCloseCircleOutline className="me-1" size={20} /> Incorrect
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div className="col mb-3">
-                                <div className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
-                                    <div className="card-body ">
-                                        <h6 style={{ fontFamily: "Fredoka, sans-serif", fontWeight: '400', color: "#333333" }}>QUESTION</h6>
-                                        <p className="card-text" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: 500 }}>How many bones are in the Skull ?</p>
-                                        <div className="alert alert-danger text-success border-0" style={{ backgroundColor: "#F1E3EF", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>
-                                            <FaRegCheckCircle className="me-1" size={20} /> Correct
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className="col mb-3">
-                                <div className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
-                                    <div className="card-body ">
-                                        <h6 style={{ fontFamily: "Fredoka, sans-serif", fontWeight: '400', color: "#333333" }}>QUESTION </h6>
-                                        <p className="card-text" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: 500 }}>How many bones are in the Skull ?</p>
-                                        <div className="alert alert-danger text-danger border-0" style={{ backgroundColor: "#F1E3EF", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>
-                                            <IoIosCloseCircleOutline className="me-1" size={20} /> Incorrect
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                                </>
+                            ))}
                         </div>
 
-                        <div class="d-flex justify-content-between mb-3">
-                            <Link href="/study-plan/quiz" className="btn ps-4" style={{ fontFamily: "Fredoka, sans-serif", color: "#CD598F", fontWeight: "600" }}>
-                                Try again
-                            </Link>
+                        {resultLoading ?
+                            <>
 
-                            <Link href="/study-plan/modules" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                Next
-                            </Link>
+                            </>
+                            :
+                            <>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <Link href={`/study-plan/quiz/${props.quiz_id}/${props.plan_id}/${props.plan_id}`} className="btn ps-4" style={{ fontFamily: "Fredoka, sans-serif", color: "#CD598F", fontWeight: "600" }}>
+                                        Try again
+                                    </Link>
 
-                        </div>
+                                    <Link href="/study-plan/modules" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                        Next
+                                    </Link>
+
+                                </div>
+                            </>
+                        }
+
 
                     </div>
                 </div>

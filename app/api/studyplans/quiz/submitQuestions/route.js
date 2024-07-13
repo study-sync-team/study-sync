@@ -26,7 +26,7 @@ export async function POST(req) {
         }
 
         for (const item of json) {
-            if (!item.plan_id || !item.quiz_id || !item.module_id || !item.user_id || !item.question || !item.selectedOption || !item.correctOption || typeof item.isCorrect !== 'boolean' || !item.score) {
+            if (!item.plan_id || !item.quiz_id || !item.module_id || !item.user_id || !item.question || !item.selectedOption || !item.correctOption || typeof item.isCorrect !== 'boolean') {
                 return NextResponse.json({ error: 'Missing or invalid required fields' }, { status: 400 });
             }
         }

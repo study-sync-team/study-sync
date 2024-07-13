@@ -9,7 +9,7 @@ export default function Results({params}){
 
            
 
-                <Header title="Results" icon="bi-chevron-left" route="/study-plan/quiz" />
+                <Header title="Results" icon="bi-chevron-left" route={`/study-plan/quiz/${params.quiz_id}/${params.plan_id}/${params.plan_id}`} />
 
                 <ResultSection 
                     quiz_id={params.quiz_id} 

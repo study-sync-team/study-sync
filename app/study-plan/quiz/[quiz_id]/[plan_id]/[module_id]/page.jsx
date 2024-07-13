@@ -6,9 +6,12 @@ export default function Quiz({ params }) {
 
         <>
 
-            <Header title="Quiz" icon="bi-chevron-left" route="/study-plan/notes" />
+            <Header title="Quiz" icon="bi-chevron-left" route={`/study-plan/notes/${params.module_id}/${params.plan_id}`} />
 
-            <QuizSection quiz_id={params.quiz_id} plan_id={params.plan_id} module_id={params.module_id}
+            <QuizSection 
+                quiz_id={params.quiz_id} 
+                plan_id={params.plan_id} 
+                module_id={params.module_id}
             />
         </>
 

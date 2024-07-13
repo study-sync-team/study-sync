@@ -86,6 +86,8 @@ const QuizComponentClient = ({ quiz, state, quiz_id, plan_id, module_id }) => {
       };
     });
 
+    console.log("Quiz Payload:",payload)
+
     const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
 
     const response = await fetch('/api/studyplans/quiz/submitQuestions', {
