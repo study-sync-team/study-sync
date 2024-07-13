@@ -20,7 +20,7 @@ export default function StudyPlanCards(props) {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"200px" }} className="d-inline-block text-truncate">{props.course_title}</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500", maxWidth:"170px" }} className="d-inline-block text-truncate">{props.course_title}</span>
                                     </div>
                                     <div className="col">
                                         <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>{props.module_count} Modules</span>
