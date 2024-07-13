@@ -21,6 +21,7 @@ export async function GET(req) {
 
         const searchParams = req.nextUrl.searchParams;
         const planId = searchParams.get('plan_id');
+        const moduleId = searchParams.get('module_id')
 
         if (searchParams.get('module_id')) {
             try {
@@ -29,7 +30,7 @@ export async function GET(req) {
                 const { data } = await supabase
                     .from('study_plan_modules')
                     .select('note,module_title')
-                    .eq('module_id', searchParams.get('module_id'))
+                    .eq('module_id', moduleId)
                     .single()
                 if (Array.isArray(data) && data.length === 0) {
 

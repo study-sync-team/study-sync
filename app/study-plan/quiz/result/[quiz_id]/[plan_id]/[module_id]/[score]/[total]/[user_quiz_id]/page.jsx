@@ -14,7 +14,7 @@ export default function Results({params}){
                 <ResultSection 
                     quiz_id={params.quiz_id} 
                     plan_id={params.plan_id}
-                    module_id={params.plan_id}
+                    module_id={params.module_id}
                     score={params.score}
                     total={params.total}
                     user_quiz_id={params.user_quiz_id}

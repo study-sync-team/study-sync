@@ -120,8 +120,9 @@ export default function NotesSection(props) {
                                 data-testid="loader"
                             />
                         </div>
-                        <h4 className='mb-4'>{noteTitle}</h4>
-                        <p style={{ fontFamily: "Fredoka, sans-serif", whiteSpace: "pre-wrap" }}>{notesData}</p>
+                        {noteTitle && <h4 className='mb-4'>{noteTitle}</h4>}
+                        {notesData && <p style={{ fontFamily: "Fredoka, sans-serif", whiteSpace: "pre-wrap" }}>{notesData}</p>}
+                        
                     </div>
 
                     {loading ?

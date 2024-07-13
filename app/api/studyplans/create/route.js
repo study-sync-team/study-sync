@@ -208,7 +208,8 @@ export async function POST(req) {
                             "plan_id": plan_id,
                             "module_id": uuidv4(),
                             "module_title": topic,
-                            "note": note
+                            "note": note,
+                            "status": false
                         });
                     if (error) {
                         console.log(error)
