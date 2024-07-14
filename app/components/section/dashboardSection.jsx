@@ -1,9 +1,9 @@
 import CreateStudyPlanCard from "../cards/createStudyPlanCard"
 import CalculateGpaCard from "../cards/calculateGPAcard"
-import CreatAiQuizCard from "../cards/createAiquizCard"
-import CalculateCGPACard from "../cards/calculateCGPACard"
+//import CreatAiQuizCard from "../cards/createAiquizCard"
+//import CalculateCGPACard from "../cards/calculateCGPACard"
 import AnalyticsCard from "../cards/analyticsCard"
-import BlogPost from "../cards/blogPostCard"
+//import BlogPost from "../cards/blogPostCard"
 
 export default function Dashboard() {
 
@@ -63,20 +63,55 @@ export default function Dashboard() {
                             <span>Daily Update</span>
                         </p>
 
-                        <div className="mt-2 px-2">
-                            <div className="d-flex justify-content-between">
-                                <p className="d-flex">
-                                    <span className="me-2"><i className="bi bi-view-list" /></span>
-                                    <span style={{ fontFamily: "Fredoka, sans-serif", }}>Course Quiz</span>
-                                </p>
-                                <p style={{ fontFamily: "Fredoka, sans-serif" }}>
-                                    3/10
-                                </p>
+                        <div className="daily-update-container">
+                            <div className="mt-2 px-2 mb-4">
+                                <div className="d-flex justify-content-between">
+                                    <p className="d-flex">
+                                        <span className="me-2"><i className="bi bi-view-list" /></span>
+                                        <span style={{ fontFamily: "Fredoka, sans-serif", }}>Course Quiz</span>
+                                    </p>
+                                    <p style={{ fontFamily: "Fredoka, sans-serif" }}>
+                                        3/10
+                                    </p>
+                                </div>
+                                <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
+                                    <div class="progress-bar" style={{ "width": "40%", backgroundColor: "#D9455F" }}></div>
+                                </div>
                             </div>
-                            <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
-                                <div class="progress-bar" style={{ "width": "40%", backgroundColor: "#D9455F" }}></div>
+
+                            <div className="mt-2 px-2 mb-4">
+                                <div className="d-flex justify-content-between">
+                                    <p className="d-flex">
+                                        <span className="me-2"><i className="bi bi-view-list" /></span>
+                                        <span style={{ fontFamily: "Fredoka, sans-serif", }}>Course Quiz</span>
+                                    </p>
+                                    <p style={{ fontFamily: "Fredoka, sans-serif" }}>
+                                        3/10
+                                    </p>
+                                </div>
+                                <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
+                                    <div class="progress-bar" style={{ "width": "40%", backgroundColor: "#D9455F" }}></div>
+                                </div>
                             </div>
+
+                            <div className="mt-2 px-2 mb-4">
+                                <div className="d-flex justify-content-between">
+                                    <p className="d-flex">
+                                        <span className="me-2"><i className="bi bi-view-list" /></span>
+                                        <span style={{ fontFamily: "Fredoka, sans-serif", }}>Course Quiz</span>
+                                    </p>
+                                    <p style={{ fontFamily: "Fredoka, sans-serif" }}>
+                                        3/10
+                                    </p>
+                                </div>
+                                <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
+                                    <div class="progress-bar" style={{ "width": "40%", backgroundColor: "#D9455F" }}></div>
+                                </div>
+                            </div>
+
+
                         </div>
+
                         <hr />
 
 

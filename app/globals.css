@@ -1,14 +1,13 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 /*@import url('../app/fonts/WEB/css/montserrat.css');*/
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 
-
-body{
-  height: 100%
+body {
+  height: 100%;
 }
 
-.form-control{
-  border: 1px solid #E0D9DE !important
+.form-control {
+  border: 1px solid #e0d9de !important;
 }
 
 .form-control::placeholder {
@@ -17,46 +16,71 @@ body{
   font-family: "Fredoka", sans-serif;
 }
 
-select option:selected{
+select option:selected {
   font-size: 13px !important; /* Set placeholder font size */
   color: #6c757d !important; /* Set placeholder color */
   font-family: "Fredoka", sans-serif !important;
 }
 
-#dashnav{
-  border: 1px solid #E0D9DE
+#dashnav {
+  border: 1px solid #e0d9de;
 }
 
-#dashnav:hover{
-  border: 1px solid #E84D88
+#dashnav:hover {
+  border: 1px solid #e84d88;
 }
 
-#dashnavv{
-  border: 1px solid #E0D9DE
+#dashnavv {
+  border: 1px solid #e0d9de;
 }
 
-#dashnavv:hover{
-  border: 1px solid #E84D88
-
+#dashnavv:hover {
+  border: 1px solid #e84d88;
 }
 
-#cardnav{
-  border: 1px solid #E0D9DE
+#cardnav {
+  border: 1px solid #e0d9de;
 }
 
-
-#saveGpaModal{
-  width:90%;
+#saveGpaModal {
+  width: 90%;
   position: fixed; /* Ensures it stays in the viewport */
   top: 50%; /* Aligns the top of the modal to the middle */
   left: 50%; /* Aligns the left of the modal to the middle */
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
 }
 
-.module-link{
-  font-size: 14px
+.module-link {
+  font-size: 14px;
 }
 
-.module-link:hover{
-  font-size: 30px
+.module-link:hover {
+  font-size: 30px;
 }
+
+.daily-update-container {
+  max-height: 100px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.daily-update-container::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 20px;
+}
+
+.daily-update-container::-webkit-scrollbar-track {
+  background: #EBDEEA;
+  border-radius: 20px;
+}
+
+.daily-update-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+.daily-update-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 20px;
+}
+
