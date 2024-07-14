@@ -11,7 +11,6 @@ export default function GpaTable({ numCourses, onCalculate }) {
         const initialCourses = Array.from({ length: numCourses }, (_, index) => ({
             id: index,
             course: "",
-
             unit: "",
             grade: "",
         }));
@@ -46,7 +45,7 @@ export default function GpaTable({ numCourses, onCalculate }) {
             gpa: calculatedGpa.toFixed(2),
         };  
 
-        console.log(gpaData)
+        //console.log(gpaData)
         setGpaPayload(gpaData)
 
         if (onCalculate) {
