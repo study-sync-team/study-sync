@@ -69,6 +69,7 @@ export default function GpaDetailsSection(props) {
                                     <th >Grade</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 {coursesData && coursesData.map(courses => (
                                     <tr key={courses.id}>
@@ -79,18 +80,26 @@ export default function GpaDetailsSection(props) {
                                 ))}
                             </tbody>
                         </table>
+                        <DotLoader
+                            color={color}
+                            loading={loading}
+                            cssOverride={override}
+                            size={100}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
 
                     {gpa !== null && (
                         <>
-                            
+
                             <div className='d-flex align-content-center justify-content-center'>
                                 <button
                                     className="btn btn-sm px-5 py-2 mt-2"
                                     style={{ fontFamily: "Fredoka, sans-serif", border: "1px solid #DC5489" }}
-                                   
+
                                 >
-                                   Your GPA is <span className='text-success'>{gpa}</span>
+                                    Your GPA is <span className='text-success'>{gpa}</span>
 
                                 </button>
                             </div>

@@ -47,9 +47,6 @@ export async function GET(req) {
                 return NextResponse.json({ message: error }, { status: 500 });
 
             }
-        } else {
-            //return NextResponse.json({ message: "Empty query" }, { status: 500 });
-
         }
 
         if (!planId || planId.trim() === "") {
