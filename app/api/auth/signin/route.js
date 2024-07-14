@@ -55,6 +55,7 @@ export async function POST(req) {
                 return NextResponse.json({ message: 'User not found' }, { status: 404 });
             } else {
                 const user = data;
+
                 const hashedPassword = hashPassword(signin_data.password);
 
                 if (hashedPassword === user.password) {
@@ -112,7 +113,7 @@ export async function POST(req) {
                         if (error) {
                             console.log("User status updated");
                         } else {
-                            console.log("Could not update user status");
+                            console.log(error);
                         }
                     }
                 } else {

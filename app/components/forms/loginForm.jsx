@@ -71,7 +71,7 @@ export default function LoginForm() {
                 'Authorization': `Bearer ${BearerToken}`
             },
             body: JSON.stringify(payload)
-        });
+        }); 
 
         if (!response.ok) {
             setLoading(false)
@@ -89,9 +89,7 @@ export default function LoginForm() {
             });
             const user_id = data.data.user_id
             localStorage.setItem('study-userId', user_id);
-            
-            //        const accessToken = localStorage.getItem('accessToken');
-            //console.log(parsed_data)
+           
         }
 
     }
