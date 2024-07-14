@@ -1,3 +1,4 @@
+"use client"
 import CreateStudyPlanCard from "../cards/createStudyPlanCard"
 import CalculateGpaCard from "../cards/calculateGPAcard"
 //import CreatAiQuizCard from "../cards/createAiquizCard"
