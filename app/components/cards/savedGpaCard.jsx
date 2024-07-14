@@ -1,12 +1,12 @@
 import Link from "next/link"
 
-export default function SavedGpaCard() {
+export default function SavedGpaCard(props) {
 
     return (
 
         <>
 
-            <Link href="/gpa" className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
+            <Link href={`/gpa/gpaDetails/${props.gpa_id}`} className="text-decoration-none card bg-transparent" style={{ border: "1px solid #E0D9DE" }}>
                 <div className="card-body pt-0 px-2">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex align-items-center me-3">
@@ -20,10 +20,10 @@ export default function SavedGpaCard() {
                             <div className="flex-grow-1 ms-3 mt-3">
                                 <div className="row row-cols-1">
                                     <div className="col">
-                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>200 Level</span>
+                                        <span style={{ fontSize: "14px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>{props.level} Level</span>
                                     </div>
                                     <div className="col">
-                                        <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>1st semester</span>
+                                        <span className="text-muted" style={{ fontSize: "12px", fontFamily: "Fredoka, sans-serif" }}>{props.semester}</span>
                                     </div>
                                 </div>
                             </div>

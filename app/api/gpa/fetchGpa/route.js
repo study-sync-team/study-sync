@@ -21,6 +21,33 @@ export async function GET(req) {
 
         const searchParams = req.nextUrl.searchParams;
         const userId = searchParams.get('user_id');
+        const gpaId = searchParams.get('gpa_id');
+
+        if (searchParams.get('gpa_id')) {
+            try {
+
+                //checking if the email exists
+                const { data } = await supabase
+                    .from('gpa')
+                    .select('*')
+                    .eq('gpa_id', gpaId)
+                    .single()
+                if (Array.isArray(data) && data.length === 0) {
+
+                    return NextResponse.json({ message: "Empty gpa" }, { status: 200 });
+
+                } else {
+
+                    return NextResponse.json({ message: "Gpa fetched successfully", data }, { status: 200 });
+
+                }
+
+            } catch (error) {
+
+                return NextResponse.json({ message: error }, { status: 500 });
+
+            }
+        }
 
         if (!userId || userId.trim() === "") {
             return NextResponse.json({ message: "Empty query" }, { status: 500 });
