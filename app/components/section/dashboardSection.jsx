@@ -22,11 +22,14 @@ export default function Dashboard() {
     const [plansData, setPlansData] = useState(null);
     const [nameLoading, setNameLoading] = useState(false)
     const [name, setName] = useState(null)
+    const [createAchievementLoading, setCreateAchievementLoading] = useState(false)
+    const [acheivement, setAcheivement] = useState(null)
 
     useEffect(() => {
 
         fetchFullname();
         fetchActivePlans();
+        fetchAchievement();
 
     }, [])
 
@@ -84,6 +87,30 @@ export default function Dashboard() {
         }
     }
 
+    const fetchAchievement = async () => {
+        setCreateAchievementLoading(true)
+        const user_id = localStorage.getItem('study-userId')
+
+        try {
+            const { data, error } = await supabase
+                .from('achievements')
+                .select('*')
+                .eq('user_id', user_id)
+                .eq('status', true)
+
+            if (error) {
+                setCreateAchievementLoading(false)
+                console.log(error)
+            } else {
+                setCreateAchievementLoading(false)
+                setAcheivement(data)
+                //console.log(data)
+            }
+        } catch (error) {
+            setCreateAchievementLoading(false)
+            console.log(error)
+        }
+    }
     return (
 
         <>
@@ -186,18 +213,28 @@ export default function Dashboard() {
                             <span>Daily Acheivement</span>
                         </p>
 
+                        <DotLoader
+                            color={color}
+                            loading={createAchievementLoading}
+                            cssOverride={override}
+                            size={100}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                         <div className="mt-2 mb-2">
                             <div className="card border-0 bg-transparent p-0" >
-                                <div className="card-body">
-                                    <div className="d-flex justify-content-center align-content-center">
-                                        <img src="medal.png" />
-                                    </div>
-                                    <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
-                                        Congrats, Isila !
-                                    </span>
-                                    <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333" }}>You just completed your weekly module quiz</p>
+                                {acheivement && acheivement.map(ach => (
+                                    <div className="card-body">
+                                        <div className="d-flex justify-content-center align-content-center">
+                                            <img src="medal.png" />
+                                        </div>
+                                        <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
+                                            Congrats, {name} !
+                                        </span>
+                                        <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333" }}>You just completed one of your study plans</p>
 
-                                </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
