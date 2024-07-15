@@ -209,7 +209,7 @@ export async function POST(req) {
                             "module_id": uuidv4(),
                             "module_title": topic,
                             "note": note,
-                            "status": FALSE
+                            "status": false
                         });
                     if (error) {
                         console.log(error)
