@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import ModulesPlanCards from "../cards/modulesPlanCards"
 import DotLoader from "react-spinners/DotLoader";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const override = {
     display: "block",
@@ -14,6 +16,7 @@ export default function ModulesSection(props) {
     const [loading, setLoading] = useState(false)
     let [color, setColor] = useState("#85486e");
     const [modulesData, setModulesData] = useState(null);
+    const [createAchievementLeading, setCreateAchievementLoading] = useState(false)
 
     useEffect(() => {
 
@@ -46,6 +49,45 @@ export default function ModulesSection(props) {
         } catch (error) {
             setLoading(false)
             console.log(error)
+        }
+
+    }
+
+    const createAchievements = async () => {
+
+        setCreateAchievementLoading(true)
+
+        const payload = {
+            userId: localStorage.getItem('study-userId'),
+            planId: props.plan_id,
+        }
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+
+        const response = await fetch('/api/analytics/createAchievements', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${BearerToken}`
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+            setCreateAchievementLoading(false)
+            const error_response = await response.json();
+            //console.log(error_response.error)
+            toast.error(`${error_response.message}`, {
+                position: "top-right"
+            });
+
+        } else {
+            setCreateAchievementLoading(false)
+            const data_response = await response.json();
+            toast.success(`${data_response.message}`, {
+                position: "top-right"
+            });
+
+
         }
 
     }
@@ -84,9 +126,20 @@ export default function ModulesSection(props) {
                                 </>
                                 :
                                 <>
-                                    <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                        Finish
-                                    </button>
+                                    {createAchievementLeading ?
+                                        <>
+                                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                Finishing...
+                                            </button>
+                                        </>
+                                        :
+                                        <>
+                                            <button onClick={createAchievements} type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                Finish
+                                            </button>
+                                        </>
+                                    }
+
                                 </>
 
                             }
@@ -100,6 +153,7 @@ export default function ModulesSection(props) {
                 </div>
 
             </main>
+            <ToastContainer />
 
         </>
 

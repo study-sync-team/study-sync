@@ -65,7 +65,7 @@ export async function POST(req) {
                 if(error){
                     return { message: error };
                 }else{
-                    return { message: "You have successfully completed this study plan" };
+                    return { message: "Study plan completed!!!🎉" };
                 }
             } catch (error) {
                 return { message: error };
