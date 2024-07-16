@@ -62,7 +62,7 @@ export async function POST(req) {
                     await UploadStudyImagesToServer(study_plan_data.course_images, plan_id)
                     await UploadStudyImagesToSupabase(study_plan_data.course_images, plan_id)
                     const modules = await GoogleAi(plan_id, study_plan_data.course_images);
-                    await CreateStudyModules(plan_id, modules, { generationConfig: { response_mime_type: "application/json" } });
+                    await CreateStudyModules(plan_id, modules, { generationConfig: { response_mime_type: "application/json" } }, study_plan_data.course_title);
                     return NextResponse.json({ message: "Study plan Created", plan_id }, { status: 200 });
                 }
 
@@ -140,10 +140,10 @@ export async function POST(req) {
 
         }
 
-        async function GoogleAi(plan_id, images, options = {}) {
+        async function GoogleAi(plan_id, images, options = {}, topic) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
-            const prompt = `Generate simplified ordered modules for students with extensive simplified explanation content according to the images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
+            const prompt = `Generate simplified ordered modules for students with extensive simplified explantive extensive explanation content based on the topic ${topic} according to the combination of images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
             function fileToGenerativePart(path, mimeType) {
                 return {
                     inlineData: {
