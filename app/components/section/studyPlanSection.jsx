@@ -52,6 +52,12 @@ export default function StudyPlanSecton() {
 
     }
 
+    const deleteStudyPlan = async (planId) => {
+        alert(planId)
+
+        
+    }
+
     return (
 
         <>
@@ -79,6 +85,7 @@ export default function StudyPlanSecton() {
                                     course_code={`${plan.course_code}`}
                                     course_title={`${plan.course_title}`}
                                     module_count={`${plan.module_count}`}
+                                    onClick={() => deleteStudyPlan(plan.plan_id)}
                                 />
                             </div>
                         ))}

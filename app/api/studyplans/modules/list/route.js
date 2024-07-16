@@ -60,6 +60,7 @@ export async function GET(req) {
                     .from('study_plan_modules')
                     .select('*')
                     .eq('plan_id', planId)
+                    .order('id', { ascending: false })
                 if (Array.isArray(data) && data.length === 0) {
 
                     return NextResponse.json({ message: "Empty modules" }, { status: 200 });

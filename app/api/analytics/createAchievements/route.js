@@ -41,7 +41,7 @@ export async function POST(req) {
                     .eq('user_id', user_id)
                     .select();
                 if (error) {
-                    return { message: error };
+                    return { message: error, status: 500 };
                 } else {
 
                     return await CreateNewAchievement(user_id, plan_id)
@@ -63,7 +63,7 @@ export async function POST(req) {
                         "plan_id": plan_id,
                     });
                 if(error){
-                    return { message: error };
+                    return { message: error, status: 500 };
                 }else{
                     return { message: "Study plan completed!!!🎉" };
                 }

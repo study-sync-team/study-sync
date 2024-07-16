@@ -35,7 +35,7 @@ export default function StudyPlanCards(props) {
                                             {/*}
                                             <li><a class="dropdown-item" href="#">Edit</a></li>
                                             {*/}
-                                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                                            <li onClick={(e) => { e.preventDefault(); props.onClick(); }}><a class="dropdown-item">Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>

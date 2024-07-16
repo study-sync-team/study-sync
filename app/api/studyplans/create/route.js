@@ -143,7 +143,7 @@ export async function POST(req) {
         async function GoogleAi(plan_id, images, options = {}, topic) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
-            const prompt = `Generate simplified ordered modules for students with extensive simplified explantive extensive explanation content based on the topic ${topic} according to the combination of images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
+            const prompt = `Generate simplified ordered modules for learning with extensive understandable extensive learning contents based on the topic ${topic} according to the combination of images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
             function fileToGenerativePart(path, mimeType) {
                 return {
                     inlineData: {
@@ -167,8 +167,6 @@ export async function POST(req) {
                     return deleteFile(filePath);
                 });
 
-                await Promise.all(deletePromises);
-
                 let text = '';
                 for await (const chunk of generatedContent.stream) {
                     const chunkText = chunk.text();
@@ -178,7 +176,7 @@ export async function POST(req) {
                 //console.log("stream", text)
 
                 // Remove any occurrence of ```json, ```stream, and trailing ```
-                const cleanedText = text.replace(/(```json|```stream|```)/g, '');
+                const cleanedText = text.replace(/(json|stream|```)/g, '');
 
                 console.log("cleaned:", cleanedText); // Add this line for debugging
                 const modulesData = JSON.parse(cleanedText);
@@ -186,7 +184,7 @@ export async function POST(req) {
 
                 // Filter out modules with empty notes
                 modules = modules.filter(module => module.note && module.note.trim() !== "");
-
+                await Promise.all(deletePromises);
                 return modules;
             } catch (error) {
                 //return { message: "Could not process images with Google AI" };

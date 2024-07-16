@@ -33,6 +33,8 @@ export async function GET(req) {
                     .from('study_plan')
                     .select('*')
                     .eq('user_id', userId)
+                    .order('id', { ascending: false })
+
                 if (Array.isArray(data) && data.length === 0) {
 
                     return NextResponse.json({ message: "Empty plan" }, { status: 200 });

@@ -182,20 +182,6 @@ export default function StudyPlanForm() {
                 </div>
 
             </form>
-            {/*}
-            <div>
-                {images.map((preview, index) => (
-                    <div key={index} className="position-relative d-inline-block me-2">
-                        <img className="img-thumbnail rounded mb-3" src={preview} style={{ width: '100px', height: '100px', objectFit: 'contain' }} alt={`Thumbnail ${index}`} />
-                        <button className="btn btn-danger btn-sm position-absolute top-0 end-0 bg-light text-danger" onClick={() => handleDelete(index)}>
-                            <FaRegTrashCan />
-                        </button>
-                    </div>
-                ))}
-                
-            </div>
-            {*/}
-
             <ToastContainer />
 
         </>
