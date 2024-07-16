@@ -15,7 +15,7 @@ export default function ModulesSection(props) {
 
     const [loading, setLoading] = useState(false)
     let [color, setColor] = useState("#85486e");
-    const [modulesData, setModulesData] = useState(null);
+    const [modulesData, setModulesData] = useState([]);
     const [createAchievementLeading, setCreateAchievementLoading] = useState(false)
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function ModulesSection(props) {
             } else {
                 const data = await response.json();
                 setLoading(false);
-                setModulesData(data.modules)
+                setModulesData(data.modules || [])
                 //console.log(data.modules)
             }
         } catch (error) {
@@ -114,37 +114,44 @@ export default function ModulesSection(props) {
                         </div>
 
                         <div className="row row-cols-1 mt-4 mb-5">
-                            {modulesData && modulesData.map(module => (
-                                <div className="col mb-3" key={module.id}>
-                                    <ModulesPlanCards plan_id={`${props.plan_id}`} module_id={`${module.module_id}`} module_title={`${module.module_title}`} />
-                                </div>
-                            ))}
-                            {loading ?
-
+                            {modulesData.length === 0 ? (
                                 <>
-
+                                    <div className='d-flex justify-content-center align-content-center'>
+                                        <img className='img-fluid' src="/empty.svg" width={250}/>
+                                    </div>
                                 </>
-                                :
+                            ) : (
                                 <>
-                                    {createAchievementLeading ?
-                                        <>
-                                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                                Finishing...
-                                            </button>
-                                        </>
+                                    {modulesData && modulesData.map(module => (
+                                        <div className="col mb-3" key={module.id}>
+                                            <ModulesPlanCards plan_id={`${props.plan_id}`} module_id={`${module.module_id}`} module_title={`${module.module_title}`} />
+                                        </div>
+                                    ))}
+                                    {loading ?
+
+                                        <p></p>
                                         :
                                         <>
-                                            <button onClick={createAchievements} type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                                Finish
-                                            </button>
-                                        </>
-                                    }
+                                            {createAchievementLeading ?
+                                                <>
+                                                    <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                        Finishing...
+                                                    </button>
+                                                </>
+                                                :
+                                                <>
+                                                    <button onClick={createAchievements} type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                        Finish
+                                                    </button>
+                                                </>
+                                            }
 
+                                        </>
+
+                                    }
                                 </>
 
-                            }
-
-                            <br /><br />
+                            )}
 
                         </div>
 

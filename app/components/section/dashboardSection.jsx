@@ -19,7 +19,7 @@ export default function Dashboard() {
 
     const [loading, setLoading] = useState(false)
     const [color, setColor] = useState("#85486e");
-    const [plansData, setPlansData] = useState(null);
+    const [plansData, setPlansData] = useState([]);
     const [nameLoading, setNameLoading] = useState(false)
     const [name, setName] = useState(null)
     const [createAchievementLoading, setCreateAchievementLoading] = useState(false)
@@ -54,7 +54,7 @@ export default function Dashboard() {
             } else {
                 const data = await response.json();
                 setLoading(false);
-                setPlansData(data.data)
+                setPlansData(data.data || [])
             }
         } catch (error) {
             setLoading(false)
@@ -184,23 +184,32 @@ export default function Dashboard() {
                                 aria-label="Loading Spinner"
                                 data-testid="loader"
                             />
-                            {plansData && plansData.map(plan => (
-                                <div className="mt-2 px-2 mb-4">
-                                    <div className="d-flex justify-content-between">
-                                        <p className="d-flex">
-                                            <span className="me-2"><i className="bi bi-view-list" /></span>
-                                            <span className="d-inline-block text-truncate" style={{ fontFamily: "Fredoka, sans-serif", maxWidth: "170px" }}>{plan.course_title}</span>
-                                        </p>
-                                        <p style={{ fontFamily: "Fredoka, sans-serif" }}>
-                                            {plan.progress}/100%
-                                        </p>
+                            {plansData.length === 0 ? (
+                                <>
+                                    <div className='d-flex justify-content-center align-content-center'>
+                                        <img className='img-fluid' src="/daily.svg" width={150} />
                                     </div>
-                                    <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
-                                        <div class="progress-bar" style={{ "width": `${plan.progress}%`, backgroundColor: "#D9455F" }}></div>
-                                    </div>
+                                </>
+                            ) : (
+                                plansData.map(plan => (
+                                    <div className="mt-2 px-2 mb-4">
+                                        <div className="d-flex justify-content-between">
+                                            <p className="d-flex">
+                                                <span className="me-2"><i className="bi bi-view-list" /></span>
+                                                <span className="d-inline-block text-truncate" style={{ fontFamily: "Fredoka, sans-serif", maxWidth: "170px" }}>{plan.course_title}</span>
+                                            </p>
+                                            <p style={{ fontFamily: "Fredoka, sans-serif" }}>
+                                                {plan.progress}/100%
+                                            </p>
+                                        </div>
+                                        <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{ "height": "5px" }}>
+                                            <div class="progress-bar" style={{ "width": `${plan.progress}%`, backgroundColor: "#D9455F" }}></div>
+                                        </div>
 
-                                </div>
-                            ))}
+                                    </div>
+                                ))
+                            )}
+
 
                         </div>
 
@@ -223,18 +232,29 @@ export default function Dashboard() {
                         />
                         <div className="mt-2 mb-2">
                             <div className="card border-0 bg-transparent p-0" >
-                                {acheivement && acheivement.map(ach => (
-                                    <div className="card-body">
-                                        <div className="d-flex justify-content-center align-content-center">
-                                            <img src="medal.png" />
+                                {acheivement.length === 0 ? (
+                                    <>
+                                        <div className='d-flex justify-content-center align-content-center'>
+                                            <img className='img-fluid' src="/empty.svg" width={200} />
                                         </div>
-                                        <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
-                                            Congrats, {name} !
-                                        </span>
-                                        <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333" }}>You just completed one of your study plans</p>
+                                    </>
+                                ) : (
+                                    <>
+                                        {acheivement && acheivement.map(ach => (
+                                            <div className="card-body">
+                                                <div className="d-flex justify-content-center align-content-center">
+                                                    <img src="medal.png" />
+                                                </div>
+                                                <span className="text-center mt-2 d-flex align-content-center justify-content-center" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "500", fontSize: "17px" }}>
+                                                    Congrats, {name} !
+                                                </span>
+                                                <p className="pt-2 text-center" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "15px", color: "#333333" }}>You just completed one of your study plans</p>
 
-                                    </div>
-                                ))}
+                                            </div>
+                                        ))}
+                                    </>
+                                )}
+
                             </div>
                         </div>
                     </div>

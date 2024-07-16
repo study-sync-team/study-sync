@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react';
 import DotLoader from "react-spinners/DotLoader";
 import StudyPlanCards from "../cards/studyPlanCards"
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const override = {
     display: "block",
@@ -13,7 +16,7 @@ export default function StudyPlanSecton() {
 
     const [loading, setLoading] = useState(false)
     let [color, setColor] = useState("#85486e");
-    const [planData, setPlanData] = useState(null);
+    const [planData, setPlanData] = useState([]);
 
     useEffect(() => {
 
@@ -42,7 +45,7 @@ export default function StudyPlanSecton() {
             } else {
                 const data = await response.json();
                 setLoading(false);
-                setPlanData(data.data)
+                setPlanData(data.data || []); // Ensure planData is an array
                 //console.log(data.data)
             }
         } catch (error) {
@@ -53,9 +56,37 @@ export default function StudyPlanSecton() {
     }
 
     const deleteStudyPlan = async (planId) => {
-        alert(planId)
+        setPlanData(prevPlanData => prevPlanData.filter(plan => plan.plan_id !== planId));
 
-        
+        const url = `/api/delete?plan_id=${planId}`
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${BearerToken}`
+                }
+            });
+            if (!response.ok) {
+                const error_response = await response.json();
+                toast.error(`${error_response.error}`, {
+                    position: "top-right"
+                });
+                throw new Error('Failed to fetch data');
+            } else {
+                fetchStudyPlan()
+
+            }
+        } catch (error) {
+            setLoading(false)
+            const error_response = await response.json();
+            toast.error(`${error_response.error}`, {
+                position: "top-right"
+            });
+            console.log(error)
+        }
+
     }
 
     return (
@@ -78,24 +109,33 @@ export default function StudyPlanSecton() {
                     </div>
 
                     <div className="row row-cols-1 mt-4">
-                        {planData && planData.map(plan => (
-                            <div className="col mb-3" key={plan.id}>
-                                <StudyPlanCards
-                                    id={`${plan.plan_id}`}
-                                    course_code={`${plan.course_code}`}
-                                    course_title={`${plan.course_title}`}
-                                    module_count={`${plan.module_count}`}
-                                    onClick={() => deleteStudyPlan(plan.plan_id)}
-                                />
-                            </div>
-                        ))}
-
+                        {planData.length === 0 ? (
+                            <>
+                                <div className='d-flex justify-content-center align-content-center'>
+                                    <img className='img-fluid' src="/empty.svg" width={250}/>
+                                </div>
+                            </>
+                        ) : (
+                            planData.map(plan => (
+                                <div className="col mb-3" key={plan.id}>
+                                    <StudyPlanCards
+                                        id={`${plan.plan_id}`}
+                                        course_code={`${plan.course_code}`}
+                                        course_title={`${plan.course_title}`}
+                                        module_count={`${plan.module_count}`}
+                                        onClick={() => deleteStudyPlan(plan.plan_id)}
+                                    />
+                                </div>
+                            ))
+                        )}
 
                     </div>
 
                 </div>
 
             </main>
+
+            <ToastContainer />
 
         </>
 
