@@ -61,8 +61,8 @@ export async function POST(req) {
                 } else {
                     await UploadStudyImagesToServer(study_plan_data.course_images, plan_id)
                     await UploadStudyImagesToSupabase(study_plan_data.course_images, plan_id)
-                    const modules = await GoogleAi(plan_id, study_plan_data.course_images);
-                    await CreateStudyModules(plan_id, modules, { generationConfig: { response_mime_type: "application/json" } }, study_plan_data.course_title);
+                    const modules = await GoogleAi(plan_id, study_plan_data.course_images,study_plan_data.course_title,{ generationConfig: { response_mime_type: "application/json" } });
+                    await CreateStudyModules(plan_id, modules);
                     return NextResponse.json({ message: "Study plan Created", plan_id }, { status: 200 });
                 }
 
@@ -140,7 +140,7 @@ export async function POST(req) {
 
         }
 
-        async function GoogleAi(plan_id, images, options = {}, topic) {
+        async function GoogleAi(plan_id, images, topic, options = {}) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
             const prompt = `Generate simplified ordered modules for learning with extensive understandable extensive learning contents based on the topic ${topic} according to the combination of images strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
@@ -173,7 +173,7 @@ export async function POST(req) {
                     console.log(chunkText);
                     text += chunkText;
                 }
-                //console.log("stream", text)
+                console.log("stream", text)
 
                 // Remove any occurrence of ```json, ```stream, and trailing ```
                 const cleanedText = text.replace(/(json|stream|```)/g, '');
@@ -183,9 +183,9 @@ export async function POST(req) {
                 let modules = Array.isArray(modulesData.modules) ? modulesData.modules : []; // Ensure 'modules' is an array
 
                 // Filter out modules with empty notes
-                modules = modules.filter(module => module.note && module.note.trim() !== "");
+                let filer_modules = modules.filter(module => module.note && module.note.trim() !== "");
                 await Promise.all(deletePromises);
-                return modules;
+                return filer_modules;
             } catch (error) {
                 //return { message: "Could not process images with Google AI" };
                 return NextResponse.json({ message: "Could not process images with Google AI" }, { status: 500 });

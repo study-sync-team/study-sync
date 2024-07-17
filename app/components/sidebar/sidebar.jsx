@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
+import LogoutModal from "../modal/logoutModal"
 
 
 export default function Sidebar() {
@@ -84,7 +85,7 @@ export default function Sidebar() {
                                 <span>Profile</span>
                             </a>
                         </li>
-                        <li class="nav-item mb-2">
+                        <li class="nav-item mb-2" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <a class="nav-link" href="#" style={{ fontFamily: "Fredoka, sans-serif", color: "#674764", fontSize: "17px" }}>
                                 <i className="bi bi-box-arrow-right me-3" style={{ color: "#E84D88" }} />
                                 <span>Logout</span>
@@ -93,6 +94,8 @@ export default function Sidebar() {
                     </ul>
                 </div>
             </div>
+
+            <LogoutModal />
 
         </>
 
