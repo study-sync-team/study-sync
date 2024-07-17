@@ -23,12 +23,37 @@ export async function POST(req) {
 
         // Ensure required fields exist in the JSON data
         if (!json.userId) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+            return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
         const logout_data = {
             user_id: json.userId
         }
+
+        async function UpdateUserStatus(user_id) {
+
+            try {
+
+                const { data, error } = await supabase
+                    .from('users')
+                    .update({ "status": "offline" })
+                    .eq('user_id', user_id)
+                    .select();
+                if(error){
+                    return { message: error, status: 500 };
+                }else{
+                    cookies().delete('sync-session')
+                    return { message: "Signed out successfully" };
+                }
+
+            } catch (error) {
+                return { message: error, status: 500 };
+            }
+
+        }
+
+        const update_user = await UpdateUserStatus(logout_data.user_id)
+        return NextResponse.json(update_user, {status: 200})
 
     }
 
