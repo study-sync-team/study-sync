@@ -23,7 +23,7 @@ export default function Dashboard() {
     const [nameLoading, setNameLoading] = useState(false)
     const [name, setName] = useState(null)
     const [createAchievementLoading, setCreateAchievementLoading] = useState(false)
-    const [acheivement, setAcheivement] = useState(null)
+    const [acheivement, setAcheivement] = useState([])
 
     useEffect(() => {
 
@@ -103,7 +103,7 @@ export default function Dashboard() {
                 console.log(error)
             } else {
                 setCreateAchievementLoading(false)
-                setAcheivement(data)
+                setAcheivement(data || [])
                 //console.log(data)
             }
         } catch (error) {
