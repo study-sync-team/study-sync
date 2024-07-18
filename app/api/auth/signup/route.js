@@ -36,7 +36,7 @@ export async function POST(req) {
 
         // Ensure required fields exist in the JSON data
         if (!json.fullname || !json.email || !json.password || !json.country || !json.gender || !json.institution || !json.gradePoint) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+            return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
         const signup_data = {
