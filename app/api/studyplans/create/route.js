@@ -160,7 +160,7 @@ export async function POST(req) {
                 });
 
                 const generatedContent = await model.generateContentStream([prompt, ...parts]);
-                const response = await result.response;
+                const response = await generatedContent.response;
                 const text = response.text();
 
                 const deletePromises = images.map((_, index) => {
