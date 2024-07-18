@@ -272,7 +272,7 @@ export async function POST(req) {
                                                         <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                                                             <p style="margin: 0;">Hi ${fullname},</p>
                                                             <br />
-                                                            <p style="margin: 0;">Thank you for signing up for a study sync account. Please confirm your email address by copying the code below and pasting it when you open this <a href="">Link</a> in to start using Study Sync.</p>
+                                                            <p style="margin: 0;">Thank you for signing up for a study sync account. Please confirm your email address by copying the code below and pasting it when you open this <a href="https://studysyncapp.xyz/setup/confirm-mail" target="_blank">Link</a> in to start using Study Sync.</p>
                                                             <br />
                                                             <p style="margin: 0;">Please note that the verification code is valid for the next 5 minutes. After that, it will expire, and you must request a new verification code.</p>
                                                         </td>
@@ -288,7 +288,7 @@ export async function POST(req) {
                                                                         <table border="0" cellpadding="0" cellspacing="0">
                                                                             <tr>
                                                                                 <td align="center" bgcolor="#85486e" style="border-radius: 6px;">
-                                                                                    <a href="https://www.blogdesire.com" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">${message}</a>
+                                                                                    <span style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">${message}</span>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>

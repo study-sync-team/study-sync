@@ -16,7 +16,9 @@ export default function ConfirmEmailSection() {
                 <div className="container">
                     <div className="text-center mt-5">
                         <div className="mb-3" style={{ fontSize: "20px", fontFamily: "Fredoka, sans-serif", fontWeight: "500" }}>Confirm Email Code</div>
-                        <p className="px-3">We sent a code to your email, check and type it below to confirm your account</p>
+                        <p className="px-3">We sent a code to your email, you'll probably see it in your spam folder, paste the code below to confirm your account,<br />
+                        
+                        </p>
                     </div>
                     
 

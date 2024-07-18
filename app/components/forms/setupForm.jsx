@@ -152,9 +152,20 @@ export default function SetupForm() {
                     </select>
                 </div>
                 <div className="mt-5 mb-3 d-grid">
-                    <Link href="/dashboard" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                        Sign Up
-                    </Link>
+                    {loading ? (
+                        <>
+                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                Loading
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                Sign Up
+                            </button>
+                        </>
+                    )}
+
                 </div>
             </form>
             <ToastContainer />

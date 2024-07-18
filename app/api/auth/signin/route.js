@@ -32,7 +32,7 @@ export async function POST(req) {
         const json = await req.json();
 
         if (cookieStore.has('sync-session')) {
-            return NextResponse.json({ message: "already logged in" }, { status: 200 });
+            return NextResponse.json({ message: "Already logged in" }, { status: 200 });
         } else {
             // Ensure required fields exist in the JSON data
             if (!json.email || !json.password) {

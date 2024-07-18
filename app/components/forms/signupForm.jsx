@@ -80,12 +80,12 @@ export default function SignupForm() {
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Password</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }}/>
+                    <input type="text" name="password" value={formData.password} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }}/>
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Confirm Password</label>
-                    <input type="password" name="ConfirmPassword" value={formData.ConfirmPassword} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
+                    <input type="text" name="ConfirmPassword" value={formData.ConfirmPassword} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
                 </div>
 
                 <div className="mt-3 px-3">

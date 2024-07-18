@@ -33,17 +33,15 @@ export default function LoginForm() {
         }));
     };
 
-    async function checkIfUserIsLoggedIn(){
+    async function checkIfUserIsLoggedIn() {
         const userId = localStorage.getItem('study-userId');
-    if (userId) {
-        // The user is logged in, perform actions as needed
-        console.log('User is logged in with ID:', userId);
-        return true;
-    } else {
-        // The user is not logged in, perform actions as needed
-        console.log('User is not logged in');
-        return false;
-    }
+        if (userId) {
+            router.push('/dashboard');
+        } else {
+            // The user is not logged in, perform actions as needed
+            console.log('User is not logged in');
+            return false;
+        }
 
     }
 
@@ -71,7 +69,7 @@ export default function LoginForm() {
                 'Authorization': `Bearer ${BearerToken}`
             },
             body: JSON.stringify(payload)
-        }); 
+        });
 
         if (!response.ok) {
             setLoading(false)
@@ -79,17 +77,19 @@ export default function LoginForm() {
             toast.error(`${error_response.message}`, {
                 position: "top-right"
             });
-            
+
         } else {
             const data = await response.json();
-            router.push('/dashboard');
             setLoading(false)
             toast.success(`${data.message}`, {
                 position: "top-right"
             });
+
             const user_id = data.data.user_id
             localStorage.setItem('study-userId', user_id);
-           
+            router.push('/dashboard');
+
+
         }
 
     }
