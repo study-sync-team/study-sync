@@ -34,17 +34,21 @@ export async function POST(req) {
 
         async function GenerateQuizWithGemini(note, options = {}) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", ...options });
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", ...options });
             const prompt = `Generate simplified quiz for students based on this note contents ${note} strictly based on this array schema{"quiz": [{question: "",option_a: "", option_b: "", option_c: "", option_d: "", right_option: "example option_b it should be the correct option"}]}`;
 
             try {
                 const generatedContent = await model.generateContentStream([prompt]);
+                const response = await generatedContent.response;
+                const text = response.text();
+                /*
                 let text = '';
                 for await (const chunk of generatedContent.stream) {
                     const chunkText = chunk.text();
                     console.log(chunkText);
                     text += chunkText;
                 }
+                */
 
                 // Remove any occurrence of ```json, ```stream, and trailing ```
                 const cleanedText = text.replace(/(```json|```stream|```)/g, '');
