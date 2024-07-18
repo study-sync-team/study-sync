@@ -373,20 +373,20 @@ export async function POST(req) {
                 return new Promise((resolve, reject) => {
                     transporter.sendMail(mailData, function (err, info) {
                         if (err) {
-                            reject({ message: err.message, status: 500 });
+                            console.log({ err });
                         } else {
-                            resolve({ message: "Email sent successfully", info });
+                            resolve({ info });
                         }
                     });
                 });
             }
 
-            async function InsertConfirmationCodeToDb(user_id, randomCode) {
+            async function InsertConfirmationCodeToDb(user_id, code) {
                 const { error } = await supabase
                     .from("confirmation_code")
                     .insert({
                         "user_id": user_id,
-                        "code": randomCode,
+                        "code": code,
                         "status": "active"
                     });
 

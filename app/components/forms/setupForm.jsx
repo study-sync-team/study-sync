@@ -70,12 +70,12 @@ export default function SetupForm() {
                 });
                 setLoading(false)
             } else {
+                setLoading(false)
                 const data = await response.json();
                 toast.success(`${data.message}`, {
                     position: "top-right"
                 });
-                router.push('/setup/confirm-mail');
-                setLoading(false)
+                router.push('/setup/confirm-mail'); 
                 console.log(data)
             }
 
