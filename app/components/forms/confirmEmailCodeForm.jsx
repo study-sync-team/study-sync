@@ -57,12 +57,8 @@ export default function ConfirmationCodeForm() {
             toast.success("Email confirmed, wait while we redirect you...", {
                 position: "top-right"
             });
-
-            router.push('/signin');
-
-
+            router.push('/info');
             setLoading(false)
-            console.log(data)
         }
 
 
