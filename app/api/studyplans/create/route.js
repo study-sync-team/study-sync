@@ -61,7 +61,7 @@ export async function POST(req) {
                 } else {
                     await UploadStudyImagesToServer(study_plan_data.course_images, plan_id)
                     await UploadStudyImagesToSupabase(study_plan_data.course_images, plan_id)
-                    const modules = await GoogleAi(plan_id, study_plan_data.course_images,study_plan_data.course_title,{ generationConfig: { response_mime_type: "application/json" } });
+                    const modules = await GoogleAi(plan_id, study_plan_data.course_images, study_plan_data.course_title, { generationConfig: { response_mime_type: "application/json" } });
                     await CreateStudyModules(plan_id, modules);
                     return NextResponse.json({ message: "Study plan Created", plan_id }, { status: 200 });
                 }
@@ -160,13 +160,15 @@ export async function POST(req) {
                 });
 
                 const generatedContent = await model.generateContentStream([prompt, ...parts]);
-                //console.log(generatedContent);
+                const response = await result.response;
+                const text = response.text();
 
                 const deletePromises = images.map((_, index) => {
                     const filePath = `./public/${plan_id}_${index}.png`;
                     return deleteFile(filePath);
                 });
 
+                /*
                 let text = '';
                 for await (const chunk of generatedContent.stream) {
                     const chunkText = chunk.text();
@@ -174,6 +176,7 @@ export async function POST(req) {
                     text += chunkText;
                 }
                 console.log("stream", text)
+                */
 
                 // Remove any occurrence of ```json, ```stream, and trailing ```
                 const cleanedText = text.replace(/(json|stream|```)/g, '');
