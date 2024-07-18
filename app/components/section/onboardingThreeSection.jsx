@@ -25,24 +25,26 @@ export default function OnboardingThreeSection() {
 
                             <img src="frame3.png" />
 
+                            {/*}
                             <div className="d-flex mt-4 pt-4 justify-content-center align-content-center">
                                 <Link href="/signup/waitlist" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600", background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                     Join Waitlist
                                 </Link>
                             </div>
+                            {*/}
 
-                            {/*}
+                           
                             <div class="d-flex justify-content-between mt-4 pt-4">
                                 <button className="btn ps-4" style={{ fontFamily: "Fredoka, sans-serif", color: "#CD598F", fontWeight: "600"}}>
                                     Log in
                                 </button>
 
                                 <Link href="/signup" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600",background: "linear-gradient(to right, #D95388, #85486e)"}}>
-                                    Join Waitlist
+                                    Signup for beta
                                 </Link>
 
                             </div>
-                            {*/}
+                            
 
                         </div>
                     </div>

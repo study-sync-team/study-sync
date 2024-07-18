@@ -94,7 +94,7 @@ export async function POST(req) {
                         return NextResponse.json({ message: "Account Created" }, { status: 201 });
                     }
                 } catch (error) {
-                    return NextResponse.json({ message: error.message }, { status: 500 });
+                    return NextResponse.json({ message: error }, { status: 500 });
                 }
             }
 

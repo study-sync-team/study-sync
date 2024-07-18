@@ -58,7 +58,7 @@ export async function POST(req) {
                     if (Array.isArray(data) && data.length === 0) {
                         return NextResponse.json({ message: "Wrong confirmation code" }, { status: 404 });
                     } else {
-                        return NextResponse.json({ message: "Email confirmed" }, { status: 200 });
+                        return NextResponse.json({ message: "Email confirmed, redirecting you..." }, { status: 200 });
                     }
                 }
             }

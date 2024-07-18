@@ -64,14 +64,14 @@ export default function SetupForm() {
                 body: JSON.stringify(payload)
             });
             if (!response.ok) {
-                console.log(error)
-                toast.error("Email already exists", {
+                const error_response = await response.json();
+                toast.error(`${error_response.message}`, {
                     position: "top-right"
                 });
                 setLoading(false)
             } else {
                 const data = await response.json();
-                toast.success("Sign up successful", {
+                toast.success(`${data.message}`, {
                     position: "top-right"
                 });
                 router.push('/setup/confirm-mail');
@@ -81,7 +81,8 @@ export default function SetupForm() {
 
         } catch (error) {
             setLoading(false)
-            toast.error("Email already exists", {
+            const error_response = await response.json();
+            toast.error(`${error_response.message}`, {
                 position: "top-right"
             });
             console.log(error)
