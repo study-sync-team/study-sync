@@ -47,10 +47,9 @@ export default function ConfirmationCodeForm() {
             },
             body: JSON.stringify(payload)
         });
-        const data = await response.json();
-
         if (!response.ok) {
-            toast.error("Wrong confirmation code", {
+            const data = await response.json();
+            toast.error(`${data.message}`, {
                 position: "top-right"
             });
             setLoading(false)

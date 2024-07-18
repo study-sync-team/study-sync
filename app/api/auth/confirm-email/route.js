@@ -28,7 +28,7 @@ export async function POST(req) {
 
         // Ensure required fields exist in the JSON data
         if (!json.code) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+            return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
         const confirm_email_data = {
