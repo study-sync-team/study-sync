@@ -124,7 +124,7 @@ export default function ModulesSection(props) {
                                 <>
                                     {modulesData && modulesData.map(module => (
                                         <div className="col mb-3" key={module.id}>
-                                            <ModulesPlanCards plan_id={`${props.plan_id}`} module_id={`${module.module_id}`} module_title={`${module.module_title}`} />
+                                            <ModulesPlanCards plan_id={`${props.plan_id}`} module_id={`${module.module_id}`} module_title={`${module.module_title}`} status={module.status}/>
                                         </div>
                                     ))}
                                     {loading ?
