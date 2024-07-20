@@ -5,6 +5,8 @@ import { MdManageAccounts } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import LogoutModal from "../modal/logoutModal";
+import { LuGraduationCap } from "react-icons/lu";
+
 
 export default function ProfileSection() {
 
@@ -15,13 +17,12 @@ export default function ProfileSection() {
             <main style={{ height: "100%" }}>
 
                 <div className="container">
-                    <div style={{ textAlign: "center", marginTop: "-70px" }}>
-                        <img src="/profile.png" className="img-fluid h-51 " alt="Profile Image" />
-                        {/*}
-                        <h5 class="card-title placeholder-glow">
-                            <div class="placeholder p-5 rounded-circle"></div>
-                        </h5>
-                        {*/}
+                    <div style={{ textAlign: "center", marginTop: "-55px" }}>
+                        <div className="mt-3 mx-auto d-flex justify-content-center align-items-center" style={{ backgroundColor: "white", width: '100px', height: '100px', borderRadius: '50%' }}>
+                            <span style={{ fontWeight: "600", fontSize: "14px", fontFamily: "Fredoka, sans-serif" }}>
+                                <span style={{ color: "#5d435a", fontSize: "40px" }}><LuGraduationCap /></span>
+                            </span>
+                        </div>
 
                     </div>
                     <div className="mt-3" style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} >
@@ -42,7 +43,7 @@ export default function ProfileSection() {
                                 <div className="flex-shrink-0">
 
                                     <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
-                                        <FaRegUserCircle size={20}/>
+                                        <FaRegUserCircle size={20} />
                                     </div>
 
                                 </div>
@@ -83,7 +84,7 @@ export default function ProfileSection() {
                                 <div className="flex-shrink-0">
 
                                     <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
-                                        <MdManageAccounts size={20}/>
+                                        <MdManageAccounts size={20} />
                                     </div>
 
                                 </div>
@@ -124,7 +125,7 @@ export default function ProfileSection() {
                                 <div className="flex-shrink-0">
 
                                     <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
-                                        <MdOutlinePayment size={20}/>
+                                        <MdOutlinePayment size={20} />
                                     </div>
 
                                 </div>
@@ -165,7 +166,7 @@ export default function ProfileSection() {
                                 <div className="flex-shrink-0">
 
                                     <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
-                                        <RiLockPasswordFill size={20}/>
+                                        <RiLockPasswordFill size={20} />
                                     </div>
 
                                 </div>
@@ -198,7 +199,7 @@ export default function ProfileSection() {
                         </div>
                     </div>
                 </Link>
-                
+
                 <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
@@ -206,7 +207,7 @@ export default function ProfileSection() {
                                 <div className="flex-shrink-0">
 
                                     <div className="px-3 py-3 rounded text-white" style={{ backgroundColor: "#5d435a" }}>
-                                        <RiLogoutBoxLine size={20}/>
+                                        <RiLogoutBoxLine size={20} />
                                     </div>
 
                                 </div>
