@@ -26,13 +26,13 @@ export async function GET(req) {
             return NextResponse.json({ message: "Empty query" }, { status: 500 });
         } else {
 
-            async function FetchUser(userId) {
+            async function FetchProfile(userId) {
 
                 try {
 
 
                     const { data } = await supabase
-                        .from('users')
+                        .from('profile')
                         .select('*')
                         .eq('user_id', userId)
                         .single()
@@ -45,7 +45,7 @@ export async function GET(req) {
                     } else {
 
 
-                        return { message: "User fetched successfully", data };
+                        return { message: "Profile fetched successfully", data };
 
 
                     }
@@ -58,8 +58,8 @@ export async function GET(req) {
 
             }
 
-            const fetch_user = await FetchUser(userId)
-            return NextResponse.json(fetch_user, { status: 200 });
+            const fetch_profile = await FetchProfile(userId)
+            return NextResponse.json(fetch_profile, { status: 200 });
 
         }
 

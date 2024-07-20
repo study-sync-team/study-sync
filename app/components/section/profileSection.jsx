@@ -8,15 +8,20 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import LogoutModal from "../modal/logoutModal";
 import { LuGraduationCap } from "react-icons/lu";
 import { useState, useEffect } from 'react';
+import UpdateProfileModal from "../modal/profileUpdateModal";
 
 
 export default function ProfileSection() {
 
     const [loading, setLoading] = useState(false)
+    const [profileLoading, setProfileLoading] = useState(false)
+    const [email, setEmail] = useState(null)
     const [fullname, setFullname] = useState(null)
+    const [allProfileData, setAllProfileData] = useState(null)
 
     useEffect(() => {
 
+        fetchProfile()
         fetchUser();
 
     }, [])
@@ -43,7 +48,7 @@ export default function ProfileSection() {
             } else {
                 const data = await response.json();
                 setLoading(false);
-                setFullname(data.data.fullname)
+                setEmail(data.data.email)
             }
         } catch (error) {
             setLoading(false)
@@ -51,6 +56,36 @@ export default function ProfileSection() {
         }
 
 
+    }
+
+    const fetchProfile = async () => {
+        setProfileLoading(true)
+
+        const user_id = localStorage.getItem('study-userId')
+
+        const url = `/api/user/fetchProfile?user_id=${user_id}`
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${BearerToken}`
+                }
+            });
+            if (!response.ok) {
+                setProfileLoading(false);
+                throw new Error('Failed to fetch data');
+            } else {
+                const data = await response.json();
+                setProfileLoading(false);
+                setAllProfileData(data.data)
+                setFullname(data.data.fullname)
+            }
+        } catch (error) {
+            setProfileLoading(false)
+            console.log(error)
+        }
     }
 
     return (
@@ -70,10 +105,10 @@ export default function ProfileSection() {
 
                     </div>
 
-                   
+
                     <div className="mt-3" style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} >
                         <span style={{ fontSize: "19px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>
-                            {loading ?
+                            {profileLoading ?
                                 <>
                                     ...
                                 </>
@@ -82,16 +117,24 @@ export default function ProfileSection() {
                             }
                         </span>
                     </div>
-                    
+
                     <div className="">
-                        <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted">Islamiyahyusuf@gmail</p>
+                        <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted">
+                            {loading ?
+                                <>
+                                    ...
+                                </>
+                                :
+                                <>{email}</>
+                            }
+                        </p>
                     </div>
                     {/* <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "bold" }}>Islamiyyah Yusuf</p>
                     <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted"></p> */}
 
                 </div>
 
-                <Link href="" className="text-decoration-none card border-0 bg-transparent mt-5" >
+                <div data-bs-toggle="modal" data-bs-target="#profileUpdateModal" className="text-decoration-none card border-0 bg-transparent mt-5" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center me-3">
@@ -117,11 +160,11 @@ export default function ProfileSection() {
                                         <span
                                             style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}
                                         >
-                                            <Link
+                                            <div
                                                 href="/dashboard"
                                                 className="text-decoration-none text-dark bi-chevron-right me-2"
                                                 style={{ "-webkit-text-stroke": "1.3px", textStroke: "5px" }}
-                                            ></Link>
+                                            ></div>
 
                                         </span>
                                     </div>
@@ -130,7 +173,7 @@ export default function ProfileSection() {
                             </div>
                         </div>
                     </div>
-                </Link>
+                </div>
 
                 <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
@@ -299,6 +342,7 @@ export default function ProfileSection() {
             </main>
 
             <LogoutModal />
+            <UpdateProfileModal profile_data={allProfileData}/>
 
         </>
 
