@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlinePayment } from "react-icons/md";
@@ -6,9 +7,51 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import LogoutModal from "../modal/logoutModal";
 import { LuGraduationCap } from "react-icons/lu";
+import { useState, useEffect } from 'react';
 
 
 export default function ProfileSection() {
+
+    const [loading, setLoading] = useState(false)
+    const [fullname, setFullname] = useState(null)
+
+    useEffect(() => {
+
+        fetchUser();
+
+    }, [])
+
+    const fetchUser = async () => {
+
+        setLoading(true)
+
+        const user_id = localStorage.getItem('study-userId')
+
+        const url = `/api/user/fetchUser?user_id=${user_id}`
+
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${BearerToken}`
+                }
+            });
+            if (!response.ok) {
+                setLoading(false);
+                throw new Error('Failed to fetch data');
+            } else {
+                const data = await response.json();
+                setLoading(false);
+                setFullname(data.data.fullname)
+            }
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+
+
+    }
 
     return (
 
@@ -18,6 +61,7 @@ export default function ProfileSection() {
 
                 <div className="container">
                     <div style={{ textAlign: "center", marginTop: "-55px" }}>
+
                         <div className="mt-3 mx-auto d-flex justify-content-center align-items-center" style={{ backgroundColor: "white", width: '100px', height: '100px', borderRadius: '50%' }}>
                             <span style={{ fontWeight: "600", fontSize: "14px", fontFamily: "Fredoka, sans-serif" }}>
                                 <span style={{ color: "#5d435a", fontSize: "40px" }}><LuGraduationCap /></span>
@@ -25,9 +69,20 @@ export default function ProfileSection() {
                         </div>
 
                     </div>
+
+                   
                     <div className="mt-3" style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} >
-                        <span style={{ fontSize: "19px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>Islamiyah Yusuf</span>
+                        <span style={{ fontSize: "19px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>
+                            {loading ?
+                                <>
+                                    ...
+                                </>
+                                :
+                                <>{fullname}</>
+                            }
+                        </span>
                     </div>
+                    
                     <div className="">
                         <p style={{ fontFamily: "Fredoka, sans-serif", textAlign: "center", fontWeight: "normal" }} className="text-muted">Islamiyahyusuf@gmail</p>
                     </div>
