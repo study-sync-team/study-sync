@@ -22,22 +22,42 @@ export default function UpdateProfileModal(props) {
                                 <form>
                                     <div class="mt-3 mb-4">
                                         <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Full Name</label>
-                                        <input name="fullname" type="text" placeholder="e.g Islamiyat Yusuf" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled/>
+                                        <input
+                                            type="text"
+                                            placeholder={props.profile_data && props.profile_data.fullname ? props.profile_data.fullname : 'Loading...'}
+                                            class="form-control"
+                                            style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled
+                                        />
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Country</label>
-                                        <input name="country" type="text" placeholder="e.g Country" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled />
+                                        <input
+                                            type="text"
+                                            placeholder={props.profile_data && props.profile_data.country ? props.profile_data.country : 'Loading...'}
+                                            class="form-control"
+                                            style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled
+                                        />
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Gender</label>
-                                        <input name="country" type="text" placeholder="e.g gender" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled />
+                                        <input
+                                            type="text"
+                                            placeholder={props.profile_data && props.profile_data.gender ? props.profile_data.gender : 'Loading...'}
+                                            class="form-control"
+                                            style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled
+                                        />                                    
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Gender</label>
-                                        <input name="country" type="text" placeholder="e.g gender" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled />
+                                        <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Institution</label>
+                                        <input
+                                            type="text"
+                                            placeholder={props.profile_data && props.profile_data.institution ? props.profile_data.institution : 'Loading...'}
+                                            class="form-control"
+                                            style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} disabled
+                                        /> 
                                     </div>
                                 </form>
                             </div>

@@ -342,7 +342,14 @@ export default function ProfileSection() {
             </main>
 
             <LogoutModal />
-            <UpdateProfileModal profile_data={allProfileData}/>
+            {profileLoading ?
+                <>
+                </>
+                :
+                <>
+                    <UpdateProfileModal profile_data={allProfileData} />
+                </>
+            }
 
         </>
 
