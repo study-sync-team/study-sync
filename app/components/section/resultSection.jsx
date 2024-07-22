@@ -231,7 +231,7 @@ export default function ResultSection(props) {
                                         Try again
                                     </Link>
 
-                                    <Link href="/study-plan/modules" className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                    <Link href={`/study-plan/modules/${props.plan_id}`} className="btn border-0 text-white px-5" style={{ fontFamily: "Fredoka, sans-serif", fontWeight: "600", background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                         Next
                                     </Link>
 
