@@ -9,7 +9,7 @@ import LogoutModal from "../modal/logoutModal";
 import { LuGraduationCap } from "react-icons/lu";
 import { useState, useEffect } from 'react';
 import UpdateProfileModal from "../modal/profileUpdateModal";
-
+import UpdateAccountModal from "../modal/accountUpdateModal";
 
 export default function ProfileSection() {
 
@@ -18,6 +18,7 @@ export default function ProfileSection() {
     const [email, setEmail] = useState(null)
     const [fullname, setFullname] = useState(null)
     const [allProfileData, setAllProfileData] = useState(null)
+    const [allAccountData, setAllAccountData] = useState(null)
 
     useEffect(() => {
 
@@ -48,6 +49,7 @@ export default function ProfileSection() {
             } else {
                 const data = await response.json();
                 setLoading(false);
+                setAllAccountData(data.data)
                 setEmail(data.data.email)
             }
         } catch (error) {
@@ -175,7 +177,7 @@ export default function ProfileSection() {
                     </div>
                 </div>
 
-                <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                <div data-bs-toggle="modal" data-bs-target="#accountUpdateModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center me-3">
@@ -214,7 +216,7 @@ export default function ProfileSection() {
                             </div>
                         </div>
                     </div>
-                </Link>
+                </div>
 
                 <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
@@ -342,14 +344,10 @@ export default function ProfileSection() {
             </main>
 
             <LogoutModal />
-            {profileLoading ?
-                <>
-                </>
-                :
-                <>
-                    <UpdateProfileModal profile_data={allProfileData} />
-                </>
-            }
+
+            <UpdateProfileModal profile_data={allProfileData} />
+
+            <UpdateAccountModal account_data={allAccountData} />
 
         </>
 
