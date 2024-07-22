@@ -87,7 +87,7 @@ export default function LoginForm() {
 
             const user_id = data.data.user_id
             localStorage.setItem('study-userId', user_id);
-            router.push('/dashboard');
+            window.location.href = '/dashboard';
 
 
         }

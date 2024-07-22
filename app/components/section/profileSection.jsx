@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import UpdateProfileModal from "../modal/profileUpdateModal";
 import UpdateAccountModal from "../modal/accountUpdateModal";
 import SubscriptionModal from "../modal/subscriptionModal";
+import ChangePasswordModal from "../modal/changePasswordModal";
 
 export default function ProfileSection() {
 
@@ -260,7 +261,7 @@ export default function ProfileSection() {
                     </div>
                 </div>
 
-                <Link href="" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                <div data-bs-toggle="modal" data-bs-target="#changePasswordModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center me-3">
@@ -299,7 +300,7 @@ export default function ProfileSection() {
                             </div>
                         </div>
                     </div>
-                </Link>
+                </div>
 
                 <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
@@ -351,6 +352,8 @@ export default function ProfileSection() {
             <UpdateAccountModal account_data={allAccountData} />
 
             <SubscriptionModal />
+
+            <ChangePasswordModal />
 
         </>
 

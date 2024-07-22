@@ -60,7 +60,7 @@ export async function POST(req) {
                 .eq('password', old_pass)
                 .single();
 
-            if (error || !data) {
+            if (error) {
                 return { message: "Wrong old password", status: 400 };
             } else {
                 const { data, error } = await supabase
