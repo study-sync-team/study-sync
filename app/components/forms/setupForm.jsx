@@ -75,7 +75,7 @@ export default function SetupForm() {
                 toast.success(`${data.message}`, {
                     position: "top-right"
                 });
-                router.push('/setup/confirm-mail'); 
+                router.push('/setup/confirm-mail');
                 console.log(data)
             }
 
@@ -99,14 +99,8 @@ export default function SetupForm() {
             <form onSubmit={handleSubmit}>
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Country</label>
-                    <select class="form-select" aria-label="Default select example" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }}
-                        name="country"
-                        value={additionalData.country}
-                        onChange={handleChange}
-                    >
-                        <option selected><span style={{ fontFamily: "Fredoka, sans-serif", fontSize: "10px" }}>e.g Nigeria</span></option>
-                        <option value="Nigeria">Nigeria</option>
-                    </select>
+                    <input name="country" value={additionalData.country} onChange={handleChange} type="text" placeholder="e.g Nigeria" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
+                    
                 </div>
 
 
@@ -126,16 +120,7 @@ export default function SetupForm() {
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Name Of Institution</label>
-                    <select class="form-select" aria-label="Default select example" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }}
-                        name="institution"
-                        value={additionalData.institution}
-                        onChange={handleChange}
-                    >
-                        <option selected><span style={{ fontFamily: "Fredoka, sans-serif", fontSize: "10px" }}>e.g Olabisi Onabanjo University</span></option>
-                        <option value="tasued">Tasued</option>
-                        <option value="oou">OOU</option>
-                        <option value="unilag">Unilag</option>
-                    </select>
+                    <input name="institution" value={additionalData.institution} onChange={handleChange} type="text" placeholder="Olabisi blah blah blah" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
                 </div>
 
                 <div class="mb-4">
