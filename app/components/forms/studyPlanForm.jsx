@@ -75,8 +75,16 @@ export default function StudyPlanForm() {
 
     const handleSubmit = async (e) => {
 
-        setLoading(true)
         e.preventDefault();
+
+        if (formData.courseImages.length === 0) {
+            toast.error("Upload pictures of your notes", {
+                position: "top-right"
+            });
+            return;
+        }
+
+        setLoading(true)
 
         const data = new FormData();
         data.append('courseTitle', formData.courseTitle);
