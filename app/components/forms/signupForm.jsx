@@ -3,17 +3,27 @@ import { useState } from "react"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from 'next/navigation'
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 export default function SignupForm() {
 
     const [loading, setLoading] = useState(false)
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [formData, setFormData] = useState({
         fullname: '',
         email: '',
         password: '',
         ConfirmPassword: '',
     });
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
 
     const router = useRouter()
 
@@ -80,12 +90,42 @@ export default function SignupForm() {
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Password</label>
-                    <input type="text" name="password" value={formData.password} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }}/>
+                    <div style={{ position: 'relative' }}>
+                        <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
+                        <span
+                            onClick={togglePasswordVisibility}
+                            style={{
+                                position: 'absolute',
+                                right: '10px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                fontSize: "18px",
+                                color: "#666"
+                            }}
+                        >
+                            {showPassword ? <LuEyeOff /> : <LuEye />}
+                        </span>
+                    </div>
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Confirm Password</label>
-                    <input type="text" name="ConfirmPassword" value={formData.ConfirmPassword} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
+                    <div style={{ position: 'relative' }}>
+                        <input type={showConfirmPassword ? "text" : "password"} name="ConfirmPassword" value={formData.ConfirmPassword} onChange={handleChange} required minlength="6" placeholder="e.g Isila25@" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
+                        <span
+                            onClick={toggleConfirmPasswordVisibility}
+                            style={{
+                                position: 'absolute',
+                                right: '10px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                fontSize: "18px",
+                                color: "#666"
+                            }}
+                        >
+                            {showConfirmPassword ? <LuEyeOff /> : <LuEye />}
+                        </span>
+                    </div>
                 </div>
 
                 <div className="mt-3 px-3">
@@ -95,24 +135,24 @@ export default function SignupForm() {
                 </div>
 
                 <div className="mt-5 mb-3 d-grid">
-                    
-                   
+
+
                     {loading ? (
                         <>
-                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                 Loading
                             </button>
                         </>
                     ) :
                         (
                             <>
-                                <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                <button type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                     Next
                                 </button>
                             </>
                         )
                     }
-                   
+
 
                 </div>
             </form>
