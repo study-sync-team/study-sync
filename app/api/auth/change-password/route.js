@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
-import { createHmac } from 'crypto'; // Use crypto for hashing
+import crypto from 'crypto';
 import supabase from "@/app/config/supabase";
 
 // Function to hash passwords
 function hashPassword(password) {
-    const hash = createHmac('sha256', process.env.PASSWORD_SALT)
-        .update(password)
-        .digest('hex');
-    return hash;
+    return crypto.createHash('sha256', password).digest('hex');
 }
 
 export async function POST(req) {

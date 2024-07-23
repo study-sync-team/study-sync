@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
-import { createHmac } from 'crypto'; // Use crypto for hashing
+import crypto from 'crypto';
 import supabase from "@/app/config/supabase";
 import { v4 as uuidv4 } from 'uuid';
 import nodemailer from 'nodemailer';
 
-// Function to hash passwords
 function hashPassword(password) {
-    const hash = createHmac('sha256', process.env.PASSWORD_SALT)
-        .update(password)
-        .digest('hex');
-    return hash;
+    return crypto.createHash('sha256', password).digest('hex');
 }
+
 
 export async function POST(req) {
     // Retrieve the headers from the incoming request
@@ -40,6 +37,8 @@ export async function POST(req) {
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
+
+
         const signup_data = {
             fullname: json.fullname,
             email: json.email,
@@ -59,6 +58,7 @@ export async function POST(req) {
         if (data.length > 0) {
             return NextResponse.json({ message: "Email already exist" }, { status: 500 });
         } else {
+
             // Hashing password
             const hashedPassword = hashPassword(signup_data.password);
 
@@ -99,7 +99,7 @@ export async function POST(req) {
             }
 
 
-            async function SendMail(fullname,sender, password, reciver, subject, message) {
+            async function SendMail(fullname, sender, password, reciver, subject, message) {
                 const transporter = nodemailer.createTransport({
                     port: 465,
                     host: "smtp.gmail.com",

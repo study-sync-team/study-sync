@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
 import { cookies } from 'next/headers';
-import { createHmac } from 'crypto'; // Use crypto for hashing
+import crypto from 'crypto';
 import supabase from "@/app/config/supabase";
 
 // Function to hash passwords
 function hashPassword(password) {
-    const hash = createHmac('sha256', process.env.PASSWORD_SALT)
-        .update(password)
-        .digest('hex');
-    return hash;
+    return crypto.createHash('sha256', password).digest('hex');
 }
 
 export async function POST(req) {
@@ -59,6 +56,7 @@ export async function POST(req) {
                 const hashedPassword = hashPassword(signin_data.password);
 
                 if (hashedPassword === user.password) {
+                    
                     const session_id = user.user_id;
 
                     cookies().set('sync-session', session_id, {
@@ -116,6 +114,7 @@ export async function POST(req) {
                             console.log(error);
                         }
                     }
+                   
                 } else {
                     return NextResponse.json({ message: "Wrong Password" }, { status: 500 });
                 }
