@@ -106,7 +106,7 @@ export default function LoginForm() {
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Password</label>
-                    <input name="password" value={formData.password} onChange={handleChange} type="password" placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
+                    <input name="text" value={formData.password} onChange={handleChange} type="password" placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
                 </div>
 
                 <div className="mt-5 mb-3 d-grid">
