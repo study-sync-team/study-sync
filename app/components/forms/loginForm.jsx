@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from 'next/navigation'
 import { useCookies } from 'next-client-cookies';
-
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 export default function LoginForm() {
 
@@ -17,6 +17,11 @@ export default function LoginForm() {
     const router = useRouter()
 
     const [loading, setLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const [formData, setFormData] = useState({
         email: '',
@@ -100,26 +105,45 @@ export default function LoginForm() {
 
             <form onSubmit={handleSubmit}>
                 <div class="mb-4">
-                    <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Email</label>
+                    <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Email Address</label>
                     <input name="email" value={formData.email} onChange={handleChange} type="email" placeholder="Email" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Password</label>
-                    <input name="password" value={formData.password} onChange={handleChange} type="text" placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} required />
+                    <div style={{ position: 'relative' }}>
+                        <input name="password" value={formData.password} onChange={handleChange} type={showPassword ? "text" : "password"} placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px", paddingRight: "100px" }} required />
+                        <span
+                            onClick={togglePasswordVisibility}
+                            style={{
+                                position: 'absolute',
+                                right: '10px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                fontSize: "18px",
+                                color: "#666"
+                            }}
+                        >
+                            {showPassword ? <LuEyeOff /> : <LuEye />}
+                        </span>
+                    </div>
                 </div>
 
-                <div className="mt-5 mb-3 d-grid">
+                <div className="text-end tetx-muted" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '400' }}>
+                    Forgot Password ?
+                </div>
+
+                <div className="mt-4 mb-3 d-grid">
                     {loading ? (
                         <>
-                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                 Loading
                             </button>
                         </>
                     ) : (
                         <>
-                            <button type="submit" className="btn btn-block border-0 text-white px-5 py-2" style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                Login
+                            <button type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                Log in
                             </button>
                         </>
                     )}
