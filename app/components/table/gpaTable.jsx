@@ -142,8 +142,8 @@ export default function GpaTable({ numCourses, onCalculate }) {
 
             <div className='d-flex align-content-center justify-content-center'>
                 <button
-                    className="btn btn-sm px-5 py-2 mt-2"
-                    style={{ fontFamily: "Fredoka, sans-serif", border: "1px solid #DC5489" }}
+                    className="btn btn-sm px-5 pt-2 pb-2 mt-2"
+                    style={{ fontFamily: "Fredoka, sans-serif", fontWeight: '600',border: "1px solid #DC5489", fontSize: "18px" }}
                     onClick={calculateGpa}
                 >
                     Calculate

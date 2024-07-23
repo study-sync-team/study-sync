@@ -134,7 +134,7 @@ export default function NotesSection(props) {
                             {quizLoading ?
                                 <>
                                     <div className="mt-5 mb-3 d-grid ">
-                                        <button disabled onClick={generateQuiz} className="btn btn-block border-0 text-white px-5 py-2 " style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                        <button disabled onClick={generateQuiz} className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                             Generating Quiz...
                                         </button>
                                     </div>
@@ -142,7 +142,7 @@ export default function NotesSection(props) {
                                 :
                                 <>
                                     <div className="mt-5 mb-3 d-grid ">
-                                        <button onClick={generateQuiz} className="btn btn-block border-0 text-white px-5 py-2 " style={{ fontFamily: "Fredoka, sans-serif", background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                        <button onClick={generateQuiz} className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
                                             Take Quiz
                                         </button>
                                     </div>
