@@ -302,7 +302,7 @@ export default function ProfileSection() {
                     </div>
                 </div>
 
-                <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="text-decoration-none card bg-transparent border-0 mt-4" >
+                <div data-bs-toggle="modal" data-bs-target="#logoutModal" className="mb-4 text-decoration-none card bg-transparent border-0 mt-4" >
                     <div className="pt-0 px-2">
                         <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center me-3">

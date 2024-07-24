@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from 'next/navigation'
 import { useCookies } from 'next-client-cookies';
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import ForgotPasswordModal from "../modal/forgotPasswordModal";
 
 export default function LoginForm() {
 
@@ -129,7 +130,7 @@ export default function LoginForm() {
                     </div>
                 </div>
 
-                <div className="text-end tetx-muted" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '400' }}>
+                <div data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" className="text-end tetx-muted" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '400' }}>
                     Forgot Password ?
                 </div>
 
@@ -151,11 +152,9 @@ export default function LoginForm() {
                 </div>
             </form>
 
+            <ForgotPasswordModal />
+
             <ToastContainer />
-
-            {/*}
-
-            {*/}
 
         </>
 

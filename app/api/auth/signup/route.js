@@ -37,8 +37,6 @@ export async function POST(req) {
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
-
-
         const signup_data = {
             fullname: json.fullname,
             email: json.email,

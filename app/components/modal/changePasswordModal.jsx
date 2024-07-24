@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { MdManageAccounts } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 
 export default function ChangePasswordModal() {
@@ -106,11 +106,11 @@ export default function ChangePasswordModal() {
                         <div class="modal-body mb-3">
                             <div className="">
                                 <div className="modal-header">
-                                    <h1 class="modal-title fs-5" id="accountUpdateModal"><MdManageAccounts size={20} /> Update Password</h1>
+                                    <h1 class="modal-title fs-5" id="accountUpdateModal"><RiLockPasswordFill size={20} /> Update Password</h1>
                                 </div>
 
                                 <form onSubmit={handleUpdatePassword}>
-                                    <div class="mb-4">
+                                    <div class="mt-3 mb-4">
                                         <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Current Password</label>
                                         <input type="text" name="old_password" value={formData.old_password} onChange={handleChange} required minlength="6" placeholder="Type in current password" class="form-control" aria-describedby="emailHelp" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px" }} />
                                     </div>
