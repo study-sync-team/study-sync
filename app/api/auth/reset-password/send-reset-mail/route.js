@@ -49,7 +49,7 @@ export async function POST(req) {
     const randomCode = generateRandomCode();
     const encoded_code = Buffer.from(randomCode.toString()).toString('base64');
 
-    async function SendResetPasswordMail(receiver, code) {
+    async function SendResetPasswordMail(receiver, code, user_id) {
 
         try {
 
@@ -232,7 +232,7 @@ export async function POST(req) {
                                                         <br />
                                                         <p style="margin: 0;">We received a request to reset your password for your Study Sync account. To proceed, simply click on the link below</p>
                                                         <br />
-                                                        <p style="margin: 0;"><a href=https://studysyncapp.xyz/reset-mail/${code}/>Click here to reset your password</a></p>
+                                                        <p style="margin: 0;"><a href=https://studysyncapp.xyz/reset-mail/${code}/${user_id}>Click here to reset your password</a></p>
                                                     </td>
                                                 </tr>
                                                 <!-- end copy -->
@@ -319,7 +319,7 @@ export async function POST(req) {
 
             const { data, error } = await supabase
                 .from('users')
-                .select('email, password, user_id')
+                .select('user_id')
                 .eq('email', email)
                 .single();
 
@@ -338,7 +338,7 @@ export async function POST(req) {
                     if (error) {
                         return { message: "Could not insert", status: 500 }
                     } else {
-                        await SendResetPasswordMail(email, code);
+                        await SendResetPasswordMail(email, code, data.user_id);
                         return { message: "Reset password mail sent", status: 200 }
                     }
 
