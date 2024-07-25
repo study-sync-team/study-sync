@@ -1,6 +1,6 @@
-import LoginForm from "../forms/loginForm"
+import ResetPasswordForm from "../forms/resetPasswordForm"
 
-export default function LoginSection() {
+export default function ResetPasswordSection(props) {
 
     return (
 
@@ -15,12 +15,12 @@ export default function LoginSection() {
 
                 <div className="container">
                     <div className="text-center mt-5">
-                        <div className="mb-3" style={{ fontSize: "20px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>Login</div>
+                        <div className="mb-3" style={{ fontSize: "20px", fontFamily: "Fredoka, sans-serif", fontWeight: "600" }}>Reset Password</div>
                     </div>
 
 
                     <div className="mt-4 px-2">
-                        <LoginForm />
+                        <ResetPasswordForm code={props.code} user_id={props.user_id}/>
                     </div>
                 </div>
 

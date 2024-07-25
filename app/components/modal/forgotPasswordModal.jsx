@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function ForgotPasswordModal() {
 
     const [loading, setLoading] = useState(false)
+    const [mailSuccess, setMailSuccess] = useState(false)
 
     const [formData, setFormData] = useState({
         email: '',
@@ -49,11 +50,11 @@ export default function ForgotPasswordModal() {
                 setLoading(false)
             } else {
                 setLoading(false)
+                setMailSuccess(true)
                 const succeess_response = await response.json();
                 toast.success(`${succeess_response.message}`, {
                     position: "top-right"
                 });
-                window.location.href = '/';
 
             }
 
@@ -86,10 +87,18 @@ export default function ForgotPasswordModal() {
                                     <h1 class="modal-title fs-5" id="forgotPasswordModal"><RiLockPasswordFill size={20} /> Forgot password</h1>
                                 </div>
 
-                                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Reset email sent,</strong> Check your mail, it might be in your spam folder.
-                                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
+                                {mailSuccess ?
+
+                                    <>
+                                        <div className="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>Reset password email sent.</strong> Check, It might be in your spam folder.
+                                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    </>
+                                    :
+                                    <></>
+
+                                }
 
                                 <form onSubmit={sendMail}>
                                     <div class="mt-3 mb-4">
