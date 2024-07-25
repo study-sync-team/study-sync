@@ -32,7 +32,6 @@ export default function ResetPasswordForm(props) {
     };
 
     const [formData, setFormData] = useState({
-        email: '',
         password: ''
     });
 
@@ -98,6 +97,40 @@ export default function ResetPasswordForm(props) {
         setLoading(true)
         e.preventDefault();
 
+        const form = new FormData();
+        form.append('password', formData.password);
+
+        const payload = {
+            password: formData.password,
+            user_id: props.user_id,
+            code: props.code
+        }
+        const BearerToken = process.env.NEXT_PUBLIC_MASTER_BEARER_KEY;
+
+        const response = await fetch('/api/auth/reset-password/reset', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${BearerToken}`
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+            setLoading(false)
+            const error_response = await response.json();
+            toast.error(`${error_response.message}`, {
+                position: "top-right"
+            });
+        } else {
+            const data = await response.json();
+            setLoading(false)
+            toast.success(`${data.message}`, {
+                position: "top-right"
+            });
+            window.location.href = '/signin';
+
+        }
+
     }
 
     return (
@@ -126,7 +159,7 @@ export default function ResetPasswordForm(props) {
                                 <div class="mb-4">
                                     <label class="form-label" style={{ fontSize: "16px", fontFamily: "Fredoka, sans-serif", fontWeight: '500' }}>Enter new password</label>
                                     <div style={{ position: 'relative' }}>
-                                        <input name="password" value={formData.password} onChange={handleChange} type={showPassword ? "text" : "password"} placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px", paddingRight: "100px" }} required />
+                                        <input name="password" value={formData.password} minlength="6" onChange={handleChange} type={showPassword ? "text" : "password"} placeholder="Password" class="form-control" style={{ backgroundColor: "#F7F2F6", height: "44px", borderRadius: "10px", paddingRight: "100px" }} required />
                                         <span
                                             onClick={togglePasswordVisibility}
                                             style={{
@@ -143,10 +176,20 @@ export default function ResetPasswordForm(props) {
                                     </div>
                                 </div>
                                 <div className="mt-4 mb-3 d-grid">
+                                    {loading ?
+                                        <>
+                                            <button disabled type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                Reseting...
+                                            </button>
+                                        </>
+                                        :
+                                        <>
+                                            <button type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
+                                                Reset Password
+                                            </button>
+                                        </>
+                                    }
 
-                                    <button type="submit" className="btn btn-block border-0 text-white px-5 pt-2 pb-2" style={{ fontFamily: "Fredoka, sans-serif", fontSize: "18px", fontWeight: '600', background: "linear-gradient(to right, #D95388, #85486e)" }}>
-                                        Reset Password
-                                    </button>
 
                                 </div>
                             </>

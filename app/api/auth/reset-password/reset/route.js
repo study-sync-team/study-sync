@@ -37,18 +37,19 @@ export async function POST(req) {
 
     const json = await req.json();
 
-    if (!json.password || !json.user_id) {
+    if (!json.password || !json.user_id || !json.code) {
         return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const reset_password_data = {
         password: json.password,
-        user_id: json.user_id
+        user_id: json.user_id,
+        code: json.code
     };
 
     const hash_new_password = hashPassword(reset_password_data.password);
 
-    async function ResetPassword(password, user_id) {
+    async function ResetPassword(password, user_id, code) {
 
         const { data, error } = await supabase
             .from('users')
@@ -59,12 +60,28 @@ export async function POST(req) {
         if (error) {
             return { message: "Could not reset password", status: 500 };
         } else {
+            await UpdateVerifyCode(code)
             return { message: "Password has been changed", status: 200 };
         }
 
     }
 
-    const reset_password = await ResetPassword(hash_new_password, reset_password_data.user_id)
+    async function UpdateVerifyCode(code) {
+
+        const { data, error } = await supabase
+            .from('reset_password')
+            .update({ "status": "expired" })
+            .eq('code', code)
+            .select();
+        if (error) {
+            console.log("User status updated");
+        } else {
+            console.log(error);
+        }
+
+    }
+
+    const reset_password = await ResetPassword(hash_new_password, reset_password_data.user_id, reset_password_data.code)
     return NextResponse.json({ message: reset_password.message }, { status: reset_password.status })
 
 }

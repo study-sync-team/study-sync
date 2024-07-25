@@ -232,7 +232,7 @@ export async function POST(req) {
                                                         <br />
                                                         <p style="margin: 0;">We received a request to reset your password for your Study Sync account. To proceed, simply click on the link below</p>
                                                         <br />
-                                                        <p style="margin: 0;"><a href=https://studysyncapp.xyz/reset-mail/${code}/${user_id}>Click here to reset your password</a></p>
+                                                        <p style="margin: 0;"><a href=https://studysyncapp.xyz/reset-password/${code}/${user_id}>Click here to reset your password</a></p>
                                                     </td>
                                                 </tr>
                                                 <!-- end copy -->

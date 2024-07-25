@@ -6,7 +6,7 @@ export default function Page({ params }){
 
         <>
 
-            <ResetPasswordSection code={params.code} user_id={params.code}/>
+            <ResetPasswordSection code={params.code} user_id={params.user_id}/>
 
         </>
 
