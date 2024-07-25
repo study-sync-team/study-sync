@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from 'next/headers';
 import nodemailer from 'nodemailer';
 import supabase from "@/app/config/supabase";
+import btoa from 'btoa';
 
 
 export async function POST(req) {
@@ -47,7 +48,6 @@ export async function POST(req) {
         return code;
     }
     const randomCode = generateRandomCode();
-    const encoded_code = Buffer.from(randomCode.toString()).toString('base64');
 
     async function SendResetPasswordMail(receiver, code, user_id) {
 
@@ -355,7 +355,7 @@ export async function POST(req) {
     }
 
     try {
-        const insert_reset_code = await InsertResetCodeIntoDb(send_reset_mail_data.mail, encoded_code, randomCode)
+        const insert_reset_code = await InsertResetCodeIntoDb(send_reset_mail_data.mail, randomCode, randomCode)
         return NextResponse.json({ message: insert_reset_code.message }, { status: insert_reset_code.status });
     } catch (error) {
         console.error('Failed to send reset password email:', error);
