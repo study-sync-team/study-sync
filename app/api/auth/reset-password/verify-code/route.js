@@ -50,12 +50,12 @@ export async function POST(req) {
                 .single();
             if (data) {
                 if (data.status === "active") {
-                    return { message: true, status: 200 }
+                    return { message: "Authorized", status: 200 }
                 } else {
-                    return { message: false, status: 500 }
+                    return { message: "Not Authorized", status: 500 }
                 }
             } else {
-                return { message: "You don't need to be here now", status: 500 }
+                return { message: "Wetin u dey find", status: 500 }
             }
 
         } catch (error) {
