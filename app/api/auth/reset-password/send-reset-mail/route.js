@@ -71,8 +71,8 @@ export async function POST(req) {
             const mailData = {
                 from: "usestudysyncapp@gmail.com",
                 to: receiver,
-                subject: "Study Sync| Reset your Study Sync Password",
-                text: "Study Sync| Reset your Study Sync Password",
+                subject: "Study Sync | Reset your Study Sync Password",
+                text: "Study Sync | Reset your Study Sync Password",
                 html: `
                 <!DOCTYPE html>
                     <html>
