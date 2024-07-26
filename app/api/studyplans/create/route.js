@@ -143,7 +143,7 @@ export async function POST(req) {
         async function GoogleAi(plan_id, images, topic, description, options = {}) {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", ...options });
-            const prompt = `Generate ordered study contents for understandable extensive learning based on the topic ${topic} and description ${description}, according and use the uploaded images as references, with detailed detailed explanations strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
+            const prompt = `Generate ordered modules of study contents for understandable extensive learning based on the topic ${topic} and description ${description}, according and use the uploaded images as references, with detailed detailed explanations strictly based on this array schema{"modules": [{topic: "",note: ""}]}`
             function fileToGenerativePart(path, mimeType) {
                 return {
                     inlineData: {
